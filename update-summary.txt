@@ -1,0 +1,83 @@
+— Website update log by GitHub Copilot (GPT-4.1)
+
+Sai Nirmaan Architects Website Update Summary (as of April 20, 2026)
+
+MoM Action Items Coverage (April 19, 2026 Meeting)
+
+1. Branding & Header Updates
+	- Logo background: Pending (transparent logo asset required)
+	- Project statistics: Completed (300+ Projects, 15+ Years, 4+ States updated)
+
+2. Tagline & Terminology Standardization
+	- "Architecture, Interior, Landscape" (Camel Case): Completed
+	- "Interior Architecture" → "Interior Design": Completed everywhere
+
+3. Our Practice Section
+	- Kept only Architectural Design and Landscape Design: Completed
+	- Removed Interior Design and Master Planning: Completed
+
+4. Services (What We Do)
+	- Service names updated as per MoM: Completed
+	- Public Spaces added: Completed
+
+5. Portfolio (Selected Works)
+	- Interior Residential (Pristine-508) thumbnail replaced with 7th image: Completed
+
+6. Featured Project – Tribal Museum
+	- Location updated to Odisha: Completed
+	- Status updated to Design Proposal 2023: Completed
+
+7. Coming Soon Section
+	- Project names updated as per MoM: Completed
+
+8. Principal Architect Profile
+	- Profile content updated from CV: Completed (pending further team details if any)
+	- Education updated: Completed
+	- Text correction (disaster-relief → disaster-resilient): Completed
+	- Statistics updated: Completed
+
+9. Social Impact Section
+	- Description updates (Disaster Relief → Disaster Resilient, Inclusive Shelter → Enclosed Shelter): Pending (awaiting confirmation/content)
+
+10. Key words
+	- Additional SEO keywords (IOCL, HPCL, etc.) added: Completed
+
+11. ABOUT - Membership Information
+	- Registration numbers masked: Completed
+
+12. Milestones
+	- Milestones updated from CV: Completed
+	- 2022–2025 section added: Completed
+	- IIID Vizag Chapter → IIID Vizag Centre: Completed
+
+13. Get In Touch
+	- Master Planning removed from dropdown: Completed
+	- Hyderabad branch office address added (left side & Find Us): Completed (Google Maps link: Placeholder, pending actual link)
+
+14. Footer Updates
+	- Hyderabad address added: Completed
+	- Google Maps navigation links: Placeholder added, pending actual links
+
+15. Media & Assets
+	- Updated images from Google Drive: Pending (awaiting assets)
+
+16. General Content Fixes
+	- "Interior Architecture" → "Interior Design": Completed
+	- Remove Master Planning: Completed
+	- Statistics updated: Completed
+
+17. Dependencies
+	- Hyderabad address: Completed
+	- Google Maps link: Pending (awaiting actual link)
+	- Updated team details: Pending (awaiting content)
+
+Summary:
+- All textual/content changes per MoM are completed except for:
+	• Social Impact section content (pending confirmation)
+	• Updated images/assets from Google Drive (pending receipt)
+	• Google Maps links for addresses (pending actual links)
+	• Updated team details (pending content)
+
+If you have the updated images, Google Maps links, or further team details, please provide them to complete the remaining tasks.
+
+— Website update log by GitHub Copilot (GPT-4.1)

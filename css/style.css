@@ -1282,7 +1282,21 @@ div > .filter-btn { font-family: var(--sans); }
 .footer-col ul li a:hover { color: var(--white); }
 .footer-contact-item { display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: flex-start; }
 .footer-contact-item svg { stroke: var(--orange); flex-shrink: 0; margin-top: 2px; }
-.footer-contact-item span { font-size: 0.83rem; color: rgba(255,255,255,0.4); line-height: 1.6; }
+.footer-contact-item span {
+  font-size: 0.93rem;
+  color: rgba(255,255,255,0.45);
+  font-weight: 500;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+.footer-contact-item a {
+  font-size: 0.93rem;
+  color: rgba(255,255,255,0.45);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: color var(--dur-fast) var(--ease);
+}
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; } }
 @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
 
@@ -1495,7 +1509,7 @@ body { animation: pageFadeIn 0.28s ease; }
 .has-error .form-control:focus { outline-color: #d93737; }
 
 /* Services page anchor targets */
-#residential, #commercial, #interior, #landscape, #masterplan, #pm {
+#residential, #commercial, #interior, #landscape, #pm {
   scroll-margin-top: 100px;
 }
 
