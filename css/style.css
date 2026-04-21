@@ -1476,7 +1476,7 @@ body { animation: pageFadeIn 0.28s ease; }
 }
 .hero-stats-mobile .hero-stat-n { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; color: var(--white); line-height: 1; }
 .hero-stats-mobile .hero-stat-n span { color: var(--orange); }
-.hero-stats-mobile .hero-stat-l { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.2rem; }
+.hero-stats-mobile .hero-stat-l { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); margin-top: 0.2rem; }
 @media (max-width: 768px) {
   .hero-stats-mobile { display: flex; }
 }
