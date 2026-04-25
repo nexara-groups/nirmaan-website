@@ -3,669 +3,318 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sai Nirmaan Architects — Architecture & Design | Visakhapatnam</title>
-  <meta name="description" content="Sai Nirmaan Architects — a leading Architecture, Interior, Landscape practice based in Visakhapatnam. Led by Principal Architect Suresh Kumar Bandaru with 15+ years of experience across South India and Odisha. 300+ Projects. 4+ States." />
-  <meta name="keywords" content="architect Visakhapatnam, architecture firm Vizag, interior design Visakhapatnam, residential architect Andhra Pradesh, Sai Nirmaan Architects, IOCL, HPCL, ARABINDO, GAIL, ADANI, INDIA BUL HOUSING & FINANCE, ICICI PRUDENTIAL, INDIAN RAILWAYS, PEPSI INDUSTRIES, AP POLICE HOUSING BOARD, R&B, RESORTS, SPAS, WELNESS CENTRES, INORBIT MALL, INDUSTRIES, GVMC, SAAP" />
-  <link rel="canonical" href="https://sainirmaan.in/index.html" />
-  <meta property="og:title" content="Sai Nirmaan Architects — Architecture & Design | Visakhapatnam" />
-  <meta property="og:description" content="Architecture, Interior, Landscape — Visakhapatnam. Led by Suresh Kumar Bandaru with 15+ years across South India and Odisha. 300+ Projects. 4+ States." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sainirmaan.in/" />
-  <meta property="og:image" content="https://sainirmaan.in/images/architectural/tribal-museum-1.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Sai Nirmaan Architects — Architecture & Design" />
-  <meta name="twitter:description" content="Full-spectrum Architecture, Interior, Landscape practice in Visakhapatnam. 300+ Projects. 15+ Years. 4+ States." />
-  <meta name="twitter:image" content="https://sainirmaan.in/images/architectural/tribal-museum-1.jpg" />
-
+  <title>Sai Nirmaan Architects — Coming Soon</title>
+  <meta name="description" content="Sai Nirmaan Architects — Architecture, Interior & Landscape practice. Website launching soon. Based in Visakhapatnam & Hyderabad." />
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="images/logo/nirmaan-logo.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" href="images/interior/pristine-508-regent-hero.jpg" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
   <style>
-    .hero-slides { position: absolute; inset: 0; }
-    .hero-slide {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center 30%;
-      opacity: 0; transition: opacity 1.4s ease;
-      transform: scale(1.04); will-change: transform;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #F47920;
+      --white: #ffffff;
     }
-    .hero-slide.active { opacity: 0.42; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── BACKGROUND SLIDES ── */
+    .bg-slides {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.6s ease-in-out;
+      transform: scale(1);
+      animation: none;
+    }
+
+    .bg-slide.active {
+      opacity: 1;
+    }
+
     @media (prefers-reduced-motion: no-preference) {
-      .hero-slide.active { animation: heroScale 25s ease-in-out infinite alternate; }
+      .bg-slide.active {
+        animation: slowZoom 18s ease-in-out infinite alternate;
+      }
     }
-    .hero-progress {
-      position: absolute; top: 0; left: 0; height: 2px;
-      background: var(--orange); z-index: 6; width: 0%; pointer-events: none;
+
+    @keyframes slowZoom {
+      from { transform: scale(1); }
+      to   { transform: scale(1.08); }
     }
-    .hero-dots {
-      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      display: flex; gap: 10px; z-index: 5;
+
+    /* ── OVERLAY ── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        135deg,
+        rgba(0,0,0,0.62) 0%,
+        rgba(0,0,0,0.45) 50%,
+        rgba(0,0,0,0.60) 100%
+      );
     }
-    .hero-dot {
-      width: 8px; height: 8px; border-radius: 50%; border: none; cursor: pointer;
-      background: rgba(255,255,255,0.35); padding: 0;
+
+    /* ── LAYOUT ── */
+    .page {
+      position: relative;
+      z-index: 2;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* ── GLASS CARD ── */
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(28px) saturate(160%);
+      -webkit-backdrop-filter: blur(28px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 20px;
+      padding: 52px 56px;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      box-shadow:
+        0 8px 48px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.14);
+    }
+
+    /* ── LOGO MARK ── */
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .logo-img {
+      height: 72px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.92;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 40px;
+      height: 1.5px;
+      background: var(--orange);
+      margin: 0 auto 28px;
+      border-radius: 2px;
+    }
+
+    /* ── HEADLINE ── */
+    .headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(36px, 5.5vw, 52px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: 0.01em;
+      margin-bottom: 16px;
+    }
+
+    .headline em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    /* ── SUB ── */
+    .sub {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+      margin-bottom: 36px;
+    }
+
+    /* ── EMAIL ROW ── */
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.40);
+    }
+
+    .contact-link {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(244,121,32,0.5);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact-link:hover {
+      color: var(--orange);
+      border-color: var(--orange);
+    }
+
+    /* ── DOTS ── */
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 40px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.28);
+      border: none;
+      cursor: pointer;
+      padding: 0;
       transition: background 0.3s, transform 0.3s;
     }
-    .hero-dot.active { background: var(--orange); transform: scale(1.3); }
-    .hero-arrow {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      z-index: 5; background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.2); color: #fff;
-      width: 40px; height: 40px; border-radius: 50%;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s; font-size: 1rem;
-    }
-    .hero-arrow:hover { background: rgba(255,255,255,0.18); }
-    .hero-prev { left: 1.5rem; }
-    .hero-next { right: 1.5rem; }
-  </style>
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"ArchitecturalFirm",
-    "name":"Sai Nirmaan Architects",
-    "description":"Architecture, Interior, Landscape — Visakhapatnam",
-    "address":{"@type":"PostalAddress","streetAddress":"S-1, 3rd Floor, Srinivasam Apartments, MVP Sector 3","addressLocality":"Visakhapatnam","addressRegion":"Andhra Pradesh","postalCode":"530017","addressCountry":"IN"},
-    "telephone":"+91-9704201438",
-    "email":"suresh@sainirmaanarchitects.in",
-    "foundingDate":"2011",
-    "sameAs":["https://www.instagram.com/nirmaanarchitects.india/"],
-    "founder":{"@type":"Person","name":"Suresh Kumar Bandaru","jobTitle":"Principal Architect"},
-    "areaServed":["Visakhapatnam","Hyderabad","Vijayawada","Odisha"]
-  }
-  </script>
+    .dot.active {
+      background: var(--orange);
+      transform: scale(1.3);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      position: fixed;
+      bottom: 28px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .footer p {
+      font-size: 11px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.30);
+    }
+
+    /* ── SLIDE COUNTER ── */
+    .slide-counter {
+      position: fixed;
+      bottom: 28px;
+      right: 36px;
+      z-index: 2;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.10em;
+      color: rgba(255,255,255,0.30);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 540px) {
+      .glass {
+        padding: 36px 28px;
+      }
+      .headline {
+        font-size: 34px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ============ NAVBAR ============ -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="images/logo/nirmaan-logo.png" alt="Sai Nirmaan Architects" />
-      <div class="nav-logo-name">Sai Nirmaan <small>Architects</small></div>
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="blog.html">Insights</a></li>
-      <li><a href="contact.html">Enquire</a></li>
-    </ul>
-    <a href="contact.html" class="nav-enquire">Enquire</a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
+<!-- BACKGROUND SLIDES -->
+<div class="bg-slides" aria-hidden="true">
+  <div class="bg-slide active" style="background-image:url('images/interior/pristine-508-regent-hero.jpg');"></div>
+  <div class="bg-slide" style="background-image:url('images/architectural/tribal-museum-1.jpg'); background-position: center 40%;"></div>
+  <div class="bg-slide" style="background-image:url('images/interior/govind-lmn-hero.jpg');"></div>
+  <div class="bg-slide" style="background-image:url('images/architectural/indoor-stadium-front.jpg'); background-position: center 30%;"></div>
+  <div class="bg-slide" style="background-image:url('images/architectural/mr-rachit-jsw-duvvada.jpg');"></div>
+</div>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="hero-progress" id="heroProgress"></div>
-  <div class="hero-slides" aria-hidden="true">
-    <div class="hero-slide active" style="background-image:url('images/interior/pristine-508-regent-hero.jpg'); background-position: center center;"></div>
-    <div class="hero-slide" style="background-image:url('images/interior/govind-lmn-hero.jpg'); background-position: center center;"></div>
-    <div class="hero-slide" style="background-image:url('images/architectural/tribal-museum-1.jpg'); background-position: center 40%;"></div>
-    <div class="hero-slide" style="background-image:url('images/architectural/indoor-stadium-front.jpg'); background-position: center 30%;"></div>
-  </div>
-  <button class="hero-arrow hero-prev" aria-label="Previous slide" onclick="heroPrev()">&#8592;</button>
-  <button class="hero-arrow hero-next" aria-label="Next slide" onclick="heroNext()">&#8594;</button>
-  <div class="hero-dots">
-    <button class="hero-dot active" aria-label="Slide 1" onclick="heroGoTo(0)"></button>
-    <button class="hero-dot" aria-label="Slide 2" onclick="heroGoTo(1)"></button>
-    <button class="hero-dot" aria-label="Slide 3" onclick="heroGoTo(2)"></button>
-    <button class="hero-dot" aria-label="Slide 4" onclick="heroGoTo(3)"></button>
-  </div>
-  <div class="hero-content wrap">
-    <p class="hero-label">Visakhapatnam · Hyderabad · Vijayawada · Odisha</p>
-    <h1>We Build Spaces<br/>That <em>Endure</em></h1>
-    <p class="hero-sub">Architecture, Interior, Landscape — thoughtfully crafted for the people who inhabit them.</p>
-    <div class="hero-actions">
-      <a href="portfolio.html" class="btn btn-ghost btn-arrow">View Portfolio</a>
-      <a href="contact.html" class="btn btn-ghost" style="border-color:rgba(255,255,255,0.38); color:rgba(255,255,255,0.9);">Start a Project</a>
-    </div>
-    <div class="hero-stats-mobile">
-      <div>
-        <div class="hero-stat-n">300<span>+</span></div>
-        <div class="hero-stat-l">Projects</div>
-      </div>
-      <div>
-        <div class="hero-stat-n">15<span>+</span></div>
-        <div class="hero-stat-l">Years</div>
-      </div>
-      <div>
-        <div class="hero-stat-n">4<span>+</span></div>
-        <div class="hero-stat-l">States</div>
-      </div>
-    </div>
-  </div>
-  <div class="hero-stats">
-    <div>
-      <div class="hero-stat-n">300<span>+</span></div>
-      <div class="hero-stat-l">Projects</div>
-    </div>
-    <div>
-      <div class="hero-stat-n">15<span>+</span></div>
-      <div class="hero-stat-l">Years</div>
-    </div>
-    <div>
-      <div class="hero-stat-n">4<span>+</span></div>
-      <div class="hero-stat-l">States</div>
-    </div>
-  </div>
-  <div class="scroll-hint">Scroll</div>
-</section>
+<div class="overlay"></div>
 
-<!-- ============ INTRO STATEMENT ============ -->
-<section class="intro-statement">
-  <div class="wrap">
-    <div class="intro-left fade-in">
-      <span class="eyebrow">Our Practice</span>
-      <h2>Design that serves people first</h2>
-    </div>
-    <div class="intro-right fade-in">
-      <p>Sai Nirmaan Architects is a full-spectrum design practice led by Principal Architect <strong>Suresh Kumar Bandaru</strong>. Over 15 years, we have delivered Architectural Design and Landscape Design projects across Andhra Pradesh, Telangana, and Odisha — from intimate family residences to large-scale institutional commissions. 300+ Projects. 4+ States.</p>
-      <p>We believe a building's true measure is not how it photographs, but how it performs for the people who use it every day. Every project begins with listening.</p>
-      <a href="about.html" class="btn btn-ghost-ink btn-arrow" style="margin-top:2rem;">About the practice</a>
-    </div>
-  </div>
-</section>
+<!-- MAIN CONTENT -->
+<div class="page">
+  <div class="glass">
 
-<!-- ============ SERVICES ============ -->
-<section class="section section-stone">
-  <div class="wrap">
-    <div style="display:grid; grid-template-columns:1fr 2fr; gap:3rem; align-items:end; margin-bottom:3rem;" class="fade-in">
-      <div>
-        <span class="eyebrow">Services</span>
-        <h2>What we do</h2>
-      </div>
-      <p style="max-width:520px; align-self:end;">From concept to handover — Architecture, Interior, Landscape delivered as a single integrated service.</p>
+    <!-- Logo -->
+    <div class="logo-mark">
+      <img src="images/logo/nirmaan-logo.png" alt="Sai Nirmaan Architects" class="logo-img" />
     </div>
 
-    <div class="services-list">
-      <a href="services.html#residential" class="service-row fade-in">
-        <div class="service-num">01</div>
-        <div class="service-info">
-          <h3>Residential Spaces</h3>
-          <p>Villas, apartments and family homes — designed around how you live, not how they look on paper.</p>
-        </div>
-        <div class="service-arrow">→</div>
-      </a>
-      <a href="services.html#commercial" class="service-row fade-in">
-        <div class="service-num">02</div>
-        <div class="service-info">
-          <h3>Commercial Spaces</h3>
-          <p>Offices, healthcare facilities and institutional buildings that express brand identity and operational excellence.</p>
-        </div>
-        <div class="service-arrow">→</div>
-      </a>
-      <a href="services.html#interior" class="service-row fade-in">
-        <div class="service-num">03</div>
-        <div class="service-info">
-          <h3>Interior Design</h3>
-          <p>Residential and commercial interiors — bespoke, material-led, with meticulous attention to light and detail.</p>
-        </div>
-        <div class="service-arrow">→</div>
-      </a>
-      <a href="services.html#landscape" class="service-row fade-in">
-        <div class="service-num">04</div>
-        <div class="service-info">
-          <h3>Landscape Design</h3>
-          <p>Outdoor environments — from private gardens to campus landscapes — that complete the built composition.</p>
-        </div>
-        <div class="service-arrow">→</div>
-      </a>
-      <a href="services.html#public" class="service-row fade-in">
-        <div class="service-num">05</div>
-        <div class="service-info">
-          <h3>Public Spaces</h3>
-          <p>Cultural institutions, sports complexes and civic spaces — architecture that serves communities and stands the test of time.</p>
-        </div>
-        <div class="service-arrow">→</div>
-      </a>
-      <a href="services.html#pm" class="service-row fade-in">
-        <div class="service-num">06</div>
-        <div class="service-info">
-          <h3>Project Management</h3>
-          <p>End-to-end site supervision and contractor coordination — your project delivered exactly as designed.</p>
-        </div>
-        <div class="service-arrow">→</div>
-      </a>
-    </div>
-  </div>
-</section>
+    <div class="divider"></div>
 
-<!-- ============ PORTFOLIO GRID ============ -->
-<section class="section">
-  <div class="wrap">
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem;" class="fade-in">
-      <div>
-        <span class="eyebrow">Portfolio</span>
-        <h2>Selected works</h2>
-      </div>
-      <a href="portfolio.html" class="btn btn-ghost-ink btn-arrow" style="flex-shrink:0;">All projects</a>
+    <h1 class="headline">
+      Something<br/><em>Beautiful</em><br/>is Coming
+    </h1>
+
+    <p class="sub">
+      Architecture · Interior · Landscape<br/>
+      Visakhapatnam &nbsp;·&nbsp; Hyderabad &nbsp;·&nbsp; Vijayawada &nbsp;·&nbsp; Odisha
+    </p>
+
+    <div class="contact-row">
+      <span class="contact-label">Get in touch</span>
+      <a class="contact-link" href="mailto:info@sainirmaan.in">info@sainirmaan.in</a>
     </div>
 
-    <div class="portfolio-filters fade-in">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="architectural">Architectural</button>
-      <button class="filter-btn" data-filter="interior">Interior</button>
-      <button class="filter-btn" data-filter="institutional">Institutional</button>
-    </div>
+    <!-- Slide dots -->
+    <div class="dots" id="dots"></div>
 
-    <div class="pgrid fade-in">
-      <!-- Wide+tall: Tribal Museum -->
-      <div class="pitem wide-tall" data-category="architectural"
-        data-tag="Cultural Architecture" data-title="Tribal Museum — President's Village"
-        data-location="Odisha" data-type="Cultural / Institutional"
-        data-area="4,500 sqm" data-year="2023" data-status="Design Proposal 2023"
-        data-desc="A landmark cultural project celebrating tribal heritage. Interlocking pavilions guide visitors through an immersive narrative drawn from local materials and traditional motifs."
-        data-gallery="images/architectural/tribal-museum-1.jpg|images/architectural/tribal-museum-2.jpg|images/architectural/tribal-museum-3.jpg|images/architectural/tribal-museum-4.jpg|images/architectural/tribal-museum-5.jpg">
-        <img src="images/architectural/tribal-museum-1.jpg" alt="Tribal Museum President's Village" loading="lazy" />
-        <div class="pitem-info">
-          <p class="pitem-tag">Cultural · Architecture</p>
-          <h3>Tribal Museum — President's Village</h3>
-          <p>Odisha · 2023</p>
-        </div>
-      </div>
-
-      <!-- Tall: Indoor Stadium -->
-      <div class="pitem tall" data-category="institutional"
-        data-tag="Institutional Design" data-title="Indoor Stadium — Atchutapuram (SAAP)"
-        data-location="Visakhapatnam District, AP" data-type="Sports / Institutional"
-        data-area="12,000 sqm" data-year="2023" data-status="Design Complete"
-        data-desc="A large-scale indoor sports facility for the Sports Authority of Andhra Pradesh — prioritising natural ventilation, clear-span structure, and civic presence."
-        data-gallery="images/architectural/indoor-stadium-front.jpg|images/architectural/indoor-stadium-side.jpg|images/architectural/indoor-stadium-elevation.jpg">
-        <img src="images/architectural/indoor-stadium-front.jpg" alt="Indoor Stadium Atchutapuram" loading="lazy" />
-        <div class="pitem-info">
-          <p class="pitem-tag">Institutional · Sports</p>
-          <h3>Indoor Stadium — Atchutapuram</h3>
-          <p>Visakhapatnam District, AP</p>
-        </div>
-      </div>
-
-      <!-- Regular: The Regent Interior (wide) -->
-      <div class="pitem wide" data-category="interior"
-        data-tag="Interior Design" data-title="Pristine-508 — The Regent, Serlingampalli"
-        data-location="Hyderabad, Telangana" data-type="Residential Spaces"
-        data-area="2,000 sqm" data-year="2025" data-status="Completed"
-        data-desc="High-end residential interior for The Regent, Serlingampalli. Warm material palettes, bespoke joinery, and seamless spatial flow throughout."
-        data-gallery="images/interior/the-regent-main.jpg|images/interior/the-regent-1.jpg|images/interior/the-regent-2.jpg|images/interior/the-regent-3.jpg|images/interior/the-regent-4.jpg|images/interior/the-regent-5.jpg|images/interior/the-regent-6.jpg|images/interior/the-regent-7.jpg|images/interior/the-regent-8.jpg">
-        <img src="images/interior/the-regent-7.jpg" alt="The Regent interior Hyderabad" loading="lazy" />
-        <div class="pitem-info">
-          <p class="pitem-tag">Interior · Residential</p>
-          <h3>Pristine-508 — The Regent</h3>
-          <p>Serlingampalli, Hyderabad · 2025</p>
-        </div>
-      </div>
-
-      <!-- Regular: Mr Bhaskar Villa -->
-      <div class="pitem" data-category="architectural"
-        data-tag="Residential Architecture" data-title="Villa — Mr. Bhaskar"
-        data-location="Srikakulam, Andhra Pradesh" data-type="Residential Villa"
-        data-area="850 sqm" data-year="2020" data-status="Completed"
-        data-desc="A contemporary coastal villa in Srikakulam — bold horizontal planes, generous overhangs, and a composition that draws from Andhra's vernacular without imitation.">
-        <img src="images/architectural/mr-bhaskar-srikakulam.jpg" alt="Mr Bhaskar Villa Srikakulam" loading="lazy" />
-        <div class="pitem-info">
-          <p class="pitem-tag">Architectural · Residential</p>
-          <h3>Villa — Mr. Bhaskar</h3>
-          <p>Srikakulam, Andhra Pradesh</p>
-        </div>
-      </div>
-
-      <!-- Regular: Harish Interior -->
-      <div class="pitem" data-category="interior"
-        data-tag="Interior Design" data-title="Residence — Mr. Harish, Rajam"
-        data-location="Rajam, Andhra Pradesh" data-type="Residential Interior"
-        data-area="400 sqm" data-year="2025" data-status="Design Complete"
-        data-desc="Full residential interior in Rajam — warm neutral palette, rich wood tones, and carefully layered lighting across all living zones."
-        data-gallery="images/interior/harish-rajam-lounge.jpg|images/interior/harish-rajam-hall.jpg|images/interior/harish-rajam-bedroom.jpg">
-        <img src="images/interior/harish-rajam-lounge.jpg" alt="Mr Harish Rajam interior" loading="lazy" />
-        <div class="pitem-info">
-          <p class="pitem-tag">Interior · Residential</p>
-          <h3>Residence — Mr. Harish, Rajam</h3>
-          <p>Rajam, Andhra Pradesh · 2025</p>
-        </div>
-      </div>
-
-      <!-- Regular: GJ Medical -->
-      <div class="pitem" data-category="architectural"
-        data-tag="Healthcare Architecture" data-title="GJ Medical Centre"
-        data-location="Gajuwaka, Visakhapatnam" data-type="Healthcare / Commercial"
-        data-area="3,200 sqm" data-year="2019" data-status="Design Complete"
-        data-desc="A clinical centre in Gajuwaka with clean contemporary lines — maximising natural light while meeting strict functional requirements for a modern healthcare environment.">
-        <img src="images/architectural/gj-medical-elevation.jpg" alt="GJ Medical Centre elevation" loading="lazy" />
-        <div class="pitem-info">
-          <p class="pitem-tag">Architectural · Healthcare</p>
-          <h3>GJ Medical Centre</h3>
-          <p>Gajuwaka, Visakhapatnam</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FEATURED PROJECT ============ -->
-<div class="feature-strip">
-  <div class="feature-image">
-    <img src="images/architectural/tribal-museum-3.jpg" alt="Tribal Museum exterior approach" loading="lazy" />
-  </div>
-  <div class="feature-body">
-    <span class="eyebrow" style="color:rgba(255,160,60,0.8);">Featured Project</span>
-    <h2>Tribal Museum —<br/>President's Village</h2>
-    <p>A cultural landmark that celebrates the heritage and identity of tribal communities through architecture. A series of interlocking pavilions, native landscaping, and material honesty create an experience that is both civic and deeply human.</p>
-    <p>Realised through detailed Enscape visualisation, this project marks a significant new direction for the practice in cultural and civic architecture.</p>
-    <div class="feature-meta">
-      <div class="feature-meta-item">
-        <div class="feature-meta-label">Typology</div>
-        <div class="feature-meta-value">Cultural / Institutional</div>
-      </div>
-      <div class="feature-meta-item">
-        <div class="feature-meta-label">Location</div>
-        <div class="feature-meta-value">Odisha</div>
-      </div>
-      <div class="feature-meta-item">
-        <div class="feature-meta-label">Status</div>
-        <div class="feature-meta-value">Design Proposal 2023</div>
-      </div>
-    </div>
-    <a href="portfolio.html" class="btn btn-ghost" style="margin-top:2.5rem; align-self:flex-start;">Explore Portfolio →</a>
   </div>
 </div>
 
-<!-- ============ ABOUT STRIP ============ -->
-<section class="section">
-  <div class="wrap">
-    <div class="about-block">
-      <div class="about-text fade-in">
-        <span class="eyebrow">Principal Architect</span>
-        <h2>Suresh Kumar Bandaru</h2>
-        <p>With a B.Arch from SAR College of Architecture (Affiliated to JNAFAU), Suresh has spent 15+ years shaping the built environment across South India and Odisha. His practice encompasses everything from luxury residences to disaster-resilient housing built alongside UNDP, UNICEF and Save the Children.</p>
-        <p>What distinguishes the practice is its belief that architecture must serve people first — that the measure of a building is the quality of life it enables, not the awards it collects.</p>
-        <div class="about-credentials">
-          <div class="cred-item">
-            <div class="cred-value">300<span>+</span></div>
-            <div class="cred-label">Projects</div>
-          </div>
-          <div class="cred-item">
-            <div class="cred-value">15<span>+</span></div>
-            <div class="cred-label">Years</div>
-          </div>
-          <div class="cred-item">
-            <div class="cred-value">4<span>+</span></div>
-            <div class="cred-label">States</div>
-          </div>
-        </div>
-        <a href="about.html" class="btn btn-dark btn-arrow" style="margin-top:2.5rem;">Meet the team</a>
-      </div>
-      <div class="about-portrait fade-in">
-        <div class="portrait-placeholder">
-          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-          <p>Professional headshot<br/><small>Suresh_Headshot.jpg — to be provided</small></p>
-        </div>
-        <div class="portrait-caption">
-          <div class="portrait-caption-name">Suresh Kumar Bandaru</div>
-          <div class="portrait-caption-role">Principal Director · Chief Architect</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CSR BAND ============ -->
-<div class="csr-band">
-  <div class="wrap">
-    <div class="csr-inner">
-      <div class="csr-text fade-in">
-        <span class="eyebrow">Social Impact</span>
-        <h2>Architecture that serves<br/>the most vulnerable</h2>
-        <p>One of the practice's defining chapters is its partnership with humanitarian organisations on the Disaster Resilient Inclusive Shelter (DRIS) programme — building climate-resilient, dignified housing for cyclone-affected communities across coastal Andhra Pradesh, Bihar, UP, West Bengal and Odisha.</p>
-        <p>This work reshaped how we think about design. When your client has nothing, every decision matters more — not less.</p>
-        <div class="csr-partners">
-          <span class="csr-partner">CARE India</span>
-          <span class="csr-partner">Child Fund</span>
-          <span class="csr-partner">Save the Children</span>
-          <span class="csr-partner">ADRA</span>
-        </div>
-      </div>
-      <div class="csr-numbers fade-in">
-        <div class="csr-num-item">
-          <div class="csr-num-val">4</div>
-          <div class="csr-num-label">Partner Organisations</div>
-        </div>
-        <div class="csr-num-item">
-          <div class="csr-num-val">AP</div>
-          <div class="csr-num-label">Coastal Communities</div>
-        </div>
-        <div class="csr-num-item">
-          <div class="csr-num-val">20<small style="font-size:1.2rem;">+</small></div>
-          <div class="csr-num-label">Years Contributing</div>
-        </div>
-        <div class="csr-num-item">
-          <div class="csr-num-val">∞</div>
-          <div class="csr-num-label">Lives Touched</div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- Footer -->
+<div class="footer">
+  <p>300+ Projects &nbsp;·&nbsp; 15+ Years &nbsp;·&nbsp; 4 States</p>
 </div>
 
-<!-- ============ CLIENTS ============ -->
-<section class="client-strip-section section-stone fade-in">
-  <div class="wrap">
-    <p class="client-strip-label">Trusted by organisations across South India &amp; Odisha</p>
-    <div class="client-strip">
-      <span class="client-chip">SAAP</span>
-      <span class="client-chip">GVMC</span>
-      <span class="client-chip">VMRDA</span>
-      <span class="client-chip">UNDP</span>
-      <span class="client-chip">UNICEF</span>
-      <span class="client-chip">Save the Children</span>
-      <span class="client-chip">Habitat for Humanity</span>
-      <span class="client-chip">KIMS Hospitals</span>
-      <span class="client-chip">Clove Dental</span>
-      <span class="client-chip">India Bulls Housing Finance</span>
-      <span class="client-chip">Swathi Promoters</span>
-      <span class="client-chip">IOCL</span>
-      <span class="client-chip">HPCL</span>
-      <span class="client-chip">ARABINDO</span>
-      <span class="client-chip">GAIL</span>
-      <span class="client-chip">ADANI</span>
-      <span class="client-chip">ICICI Prudential</span>
-      <span class="client-chip">Indian Railways</span>
-      <span class="client-chip">Pepsi Industries</span>
-      <span class="client-chip">AP Police Housing Board</span>
-      <span class="client-chip">R&amp;B</span>
-      <span class="client-chip">Resorts</span>
-      <span class="client-chip">Spas</span>
-      <span class="client-chip">Wellness Centres</span>
-      <span class="client-chip">Inorbit Mall</span>
-      <span class="client-chip">Industries</span>
-    </div>
-  </div>
-</section>
+<div class="slide-counter" id="slideCounter">1 / 5</div>
 
-<!-- ============ INSIGHTS ============ -->
-<section class="section section-stone">
-  <div class="wrap">
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem;" class="fade-in">
-      <div>
-        <span class="eyebrow">Insights</span>
-        <h2>From the studio</h2>
-      </div>
-      <a href="blog.html" class="btn btn-ghost-ink btn-arrow" style="flex-shrink:0;">All articles</a>
-    </div>
-    <div class="blog-grid-el fade-in">
-      <a href="blog/designing-for-the-coast.html" class="bcard">
-        <div class="bcard-thumb">
-          <img src="images/architectural/mr-bhaskar-srikakulam.jpg" alt="Coastal architecture Andhra Pradesh" loading="lazy" />
-        </div>
-        <div class="bcard-body">
-          <p class="bcard-tag">Architecture · Residential</p>
-          <h3>Designing for Coastal Andhra: Climate, Context &amp; Character</h3>
-          <p class="bcard-excerpt">How passive design and material honesty create homes that endure along Andhra Pradesh's coastline.</p>
-          <div class="bcard-meta">
-            <span>Suresh Kumar Bandaru</span>
-            <span>5 min read</span>
-          </div>
-        </div>
-      </a>
-      <a href="blog/small-spaces-big-ideas.html" class="bcard">
-        <div class="bcard-thumb">
-          <img src="images/interior/the-regent-7.jpg" alt="Interior design small spaces" loading="lazy" />
-        </div>
-        <div class="bcard-body">
-          <p class="bcard-tag">Interior Design</p>
-          <h3>Small Spaces, Big Ideas: Maximising Urban Apartments in Hyderabad</h3>
-          <p class="bcard-excerpt">Smart planning, light strategy, and material restraint — how any urban flat can feel generous.</p>
-          <div class="bcard-meta">
-            <span>Sai Nirmaan Architects</span>
-            <span>6 min read</span>
-          </div>
-        </div>
-      </a>
-      <a href="blog/architecture-for-social-good.html" class="bcard">
-        <div class="bcard-thumb">
-          <img src="images/architectural/tribal-museum-1.jpg" alt="Architecture for social good" loading="lazy" />
-        </div>
-        <div class="bcard-body">
-          <p class="bcard-tag">Thought Leadership · CSR</p>
-          <h3>Building for the Margins: Architecture as a Tool for Social Change</h3>
-          <p class="bcard-excerpt">Lessons from disaster-relief housing work with UNDP, UNICEF and Save the Children in coastal Andhra Pradesh.</p>
-          <div class="bcard-meta">
-            <span>Suresh Kumar Bandaru</span>
-            <span>7 min read</span>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CTA ============ -->
-<div class="cta-strip">
-  <div class="wrap">
-    <div class="fade-in">
-      <h2>Ready to begin<br/>your project?</h2>
-      <p>Free initial consultation. We respond within 24 hours.</p>
-    </div>
-    <div class="cta-actions fade-in">
-      <a href="contact.html" class="btn btn-ghost btn-arrow">Send an enquiry</a>
-      <a href="tel:+919704201438" style="font-size:0.78rem; color:rgba(255,255,255,0.4); letter-spacing:0.06em; margin-top:0.25rem;">or call +91 97042 01438</a>
-    </div>
-  </div>
-</div>
-
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="images/logo/nirmaan-logo.png" alt="Sai Nirmaan Architects" />
-        <p>A full-spectrum architecture and design practice headquartered in Visakhapatnam, with projects across Andhra Pradesh, Telangana and Odisha.</p>
-        <div class="footer-socials">
-          <a href="https://www.instagram.com/nirmaanarchitects.india/" class="fsocial" aria-label="Instagram" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="footer-col">
-        <h5>Navigate</h5>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="blog.html">Insights</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h5>Services</h5>
-        <ul>
-          <li><a href="services.html#residential">Residential</a></li>
-          <li><a href="services.html#commercial">Commercial</a></li>
-          <li><a href="services.html#interior">Interior Design</a></li>
-          <li><a href="services.html#landscape">Landscape</a></li>
-          <li><a href="services.html#public">Public Spaces</a></li>
-          <li><a href="services.html#pm">Project Management</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h5>Contact</h5>
-        <div class="footer-contact-row">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 10a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 0h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <a href="tel:+919704201438">+91 97042 01438</a>
-        </div>
-        <div class="footer-contact-row">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <a href="mailto:suresh@sainirmaanarchitects.in">suresh@sainirmaanarchitects.in</a>
-        </div>
-        <div class="footer-contact-row">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>S-1, 3rd Floor, Srinivasam Apartments,<br/>MVP Sector 3, Visakhapatnam — 530017</span>
-        </div>
-        <div class="footer-contact-row">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>6-81/1, Patemeti Chandraih Nilayan, Tellapur HUDA Colony,<br/>Near Allwyn Space Station, Hyderabad, Telangana — 502032</span>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 Sai Nirmaan Architects. All rights reserved.</p>
-      <p>Visakhapatnam &nbsp;|&nbsp; Hyderabad, India</p>
-    </div>
-  </div>
-</footer>
-
-<!-- Back to top -->
-<button class="btt" id="btt" aria-label="Back to top">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
-</button>
-
-<!-- Gallery Modal -->
-<div class="modal-wrap" id="modal" role="dialog" aria-modal="true" aria-label="Project gallery">
-  <button class="modal-close" id="modalClose" aria-label="Close gallery">✕</button>
-  <div class="modal-gallery" id="modalGallery">
-    <button class="modal-nav modal-prev" id="modalPrev" aria-label="Previous image">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <button class="modal-nav modal-next" id="modalNext" aria-label="Next image">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-    <div class="modal-counter" id="modalCounter">1 / 1</div>
-  </div>
-  <div class="modal-body">
-    <div class="modal-body-main">
-      <p class="pitem-tag" id="modalTag"></p>
-      <h3 id="modalTitle"></h3>
-      <p class="modal-location" id="modalLocation"></p>
-      <p class="modal-desc" id="modalDesc"></p>
-    </div>
-    <div class="modal-specs">
-      <div class="mspec"><div class="mspec-label">Type</div><div class="mspec-value" id="mType"></div></div>
-      <div class="mspec"><div class="mspec-label">Area</div><div class="mspec-value" id="mArea"></div></div>
-      <div class="mspec"><div class="mspec-label">Year</div><div class="mspec-value" id="mYear"></div></div>
-      <div class="mspec"><div class="mspec-label">Status</div><div class="mspec-value" id="mStatus"></div></div>
-    </div>
-  </div>
-</div>
-
-<script src="js/main.js"></script>
 <script>
-(function(){
-  var slides = document.querySelectorAll('.hero-slide');
-  var dots   = document.querySelectorAll('.hero-dot');
-  var bar    = document.getElementById('heroProgress');
+(function () {
+  var slides  = document.querySelectorAll('.bg-slide');
+  var dotsEl  = document.getElementById('dots');
+  var counter = document.getElementById('slideCounter');
+  var current = 0;
   var DURATION = 6000;
-  var current = 0, timer, rafId, startTime;
+  var timer;
+
+  // Build dots
+  slides.forEach(function(_, i) {
+    var b = document.createElement('button');
+    b.className = 'dot' + (i === 0 ? ' active' : '');
+    b.setAttribute('aria-label', 'Slide ' + (i + 1));
+    b.addEventListener('click', function() { goTo(i); });
+    dotsEl.appendChild(b);
+  });
+
+  var dots = document.querySelectorAll('.dot');
 
   function goTo(n) {
     slides[current].classList.remove('active');
@@ -673,29 +322,16 @@
     current = (n + slides.length) % slides.length;
     slides[current].classList.add('active');
     dots[current].classList.add('active');
-    resetProgress();
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    clearInterval(timer);
+    timer = setInterval(advance, DURATION);
   }
 
-  function resetProgress() {
-    clearTimeout(timer);
-    cancelAnimationFrame(rafId);
-    bar.style.width = '0%';
-    startTime = performance.now();
-    function step(now) {
-      var pct = Math.min((now - startTime) / DURATION * 100, 100);
-      bar.style.width = pct + '%';
-      if (pct < 100) rafId = requestAnimationFrame(step);
-    }
-    rafId = requestAnimationFrame(step);
-    timer = setTimeout(function(){ goTo(current + 1); }, DURATION);
-  }
+  function advance() { goTo(current + 1); }
 
-  window.heroPrev  = function(){ goTo(current - 1); };
-  window.heroNext  = function(){ goTo(current + 1); };
-  window.heroGoTo  = goTo;
-
-  resetProgress();
+  timer = setInterval(advance, DURATION);
 })();
 </script>
+
 </body>
 </html>
