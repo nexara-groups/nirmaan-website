@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sai Nirmaan Architects — Coming Soon</title>
+  <meta name="description" content="Sai Nirmaan Architects — Architecture, Interior & Landscape practice. Website launching soon. Based in Visakhapatnam & Hyderabad." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #F47920;
+      --white: #ffffff;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── BACKGROUND SLIDES ── */
+    .bg-slides {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .bg-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.6s ease-in-out;
+      transform: scale(1);
+      animation: none;
+    }
+
+    .bg-slide.active {
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .bg-slide.active {
+        animation: slowZoom 18s ease-in-out infinite alternate;
+      }
+    }
+
+    @keyframes slowZoom {
+      from { transform: scale(1); }
+      to   { transform: scale(1.08); }
+    }
+
+    /* ── OVERLAY ── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        135deg,
+        rgba(0,0,0,0.62) 0%,
+        rgba(0,0,0,0.45) 50%,
+        rgba(0,0,0,0.60) 100%
+      );
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      position: relative;
+      z-index: 2;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* ── GLASS CARD ── */
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(28px) saturate(160%);
+      -webkit-backdrop-filter: blur(28px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 20px;
+      padding: 52px 56px;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      box-shadow:
+        0 8px 48px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.14);
+    }
+
+    /* ── LOGO MARK ── */
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      text-align: left;
+    }
+
+    .logo-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.95);
+      line-height: 1.2;
+    }
+
+    .logo-sub {
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 40px;
+      height: 1.5px;
+      background: var(--orange);
+      margin: 0 auto 28px;
+      border-radius: 2px;
+    }
+
+    /* ── HEADLINE ── */
+    .headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(36px, 5.5vw, 52px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: 0.01em;
+      margin-bottom: 16px;
+    }
+
+    .headline em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    /* ── SUB ── */
+    .sub {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+      margin-bottom: 36px;
+    }
+
+    /* ── EMAIL ROW ── */
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.40);
+    }
+
+    .contact-link {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(244,121,32,0.5);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact-link:hover {
+      color: var(--orange);
+      border-color: var(--orange);
+    }
+
+    /* ── DOTS ── */
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 40px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.28);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .dot.active {
+      background: var(--orange);
+      transform: scale(1.3);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      position: fixed;
+      bottom: 28px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .footer p {
+      font-size: 11px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.30);
+    }
+
+    /* ── SLIDE COUNTER ── */
+    .slide-counter {
+      position: fixed;
+      bottom: 28px;
+      right: 36px;
+      z-index: 2;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.10em;
+      color: rgba(255,255,255,0.30);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 540px) {
+      .glass {
+        padding: 36px 28px;
+      }
+      .headline {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BACKGROUND SLIDES -->
+<div class="bg-slides" aria-hidden="true">
+  <div class="bg-slide active" style="background-image:url('images/interior/pristine-508-regent-hero.jpg');"></div>
+  <div class="bg-slide" style="background-image:url('images/architectural/tribal-museum-1.jpg'); background-position: center 40%;"></div>
+  <div class="bg-slide" style="background-image:url('images/interior/govind-lmn-hero.jpg');"></div>
+  <div class="bg-slide" style="background-image:url('images/architectural/indoor-stadium-front.jpg'); background-position: center 30%;"></div>
+  <div class="bg-slide" style="background-image:url('images/architectural/mr-rachit-jsw-duvvada.jpg');"></div>
+</div>
+
+<div class="overlay"></div>
+
+<!-- MAIN CONTENT -->
+<div class="page">
+  <div class="glass">
+
+    <!-- Logo -->
+    <div class="logo-mark">
+      <svg class="logo-icon" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="38" height="38" rx="6" fill="rgba(255,255,255,0.10)"/>
+        <!-- Architectural glyph: stylised building/arch -->
+        <path d="M8 29 L8 17 L19 9 L30 17 L30 29" stroke="#F47920" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+        <rect x="15" y="21" width="8" height="8" rx="0" stroke="rgba(255,255,255,0.55)" stroke-width="1.2" fill="none"/>
+        <line x1="19" y1="9" x2="19" y2="6" stroke="#F47920" stroke-width="1.4"/>
+        <circle cx="19" cy="5" r="1.5" fill="#F47920"/>
+      </svg>
+      <div class="logo-text">
+        <div class="logo-name">Sai Nirmaan</div>
+        <div class="logo-sub">Architects</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h1 class="headline">
+      Something<br/><em>Beautiful</em><br/>is Coming
+    </h1>
+
+    <p class="sub">
+      Architecture · Interior · Landscape<br/>
+      Visakhapatnam &nbsp;·&nbsp; Hyderabad &nbsp;·&nbsp; Vijayawada &nbsp;·&nbsp; Odisha
+    </p>
+
+    <div class="contact-row">
+      <span class="contact-label">Get in touch</span>
+      <a class="contact-link" href="mailto:info@sainirmaan.in">info@sainirmaan.in</a>
+    </div>
+
+    <!-- Slide dots -->
+    <div class="dots" id="dots"></div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>300+ Projects &nbsp;·&nbsp; 15+ Years &nbsp;·&nbsp; 4 States</p>
+</div>
+
+<div class="slide-counter" id="slideCounter">1 / 5</div>
+
+<script>
+(function () {
+  var slides  = document.querySelectorAll('.bg-slide');
+  var dotsEl  = document.getElementById('dots');
+  var counter = document.getElementById('slideCounter');
+  var current = 0;
+  var DURATION = 6000;
+  var timer;
+
+  // Build dots
+  slides.forEach(function(_, i) {
+    var b = document.createElement('button');
+    b.className = 'dot' + (i === 0 ? ' active' : '');
+    b.setAttribute('aria-label', 'Slide ' + (i + 1));
+    b.addEventListener('click', function() { goTo(i); });
+    dotsEl.appendChild(b);
+  });
+
+  var dots = document.querySelectorAll('.dot');
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    clearInterval(timer);
+    timer = setInterval(advance, DURATION);
+  }
+
+  function advance() { goTo(current + 1); }
+
+  timer = setInterval(advance, DURATION);
+})();
+</script>
+
+</body>
+</html>
