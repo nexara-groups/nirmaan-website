@@ -558,6 +558,8 @@ a.service-row { display: grid; }
   gap: clamp(4rem, 7vw, 8rem);
   align-items: center;
 }
+.about-block .about-portrait { order: 2; }
+.about-block .about-text { order: 1; }
 .about-text h2 { margin-bottom: 1.75rem; }
 .about-text p { margin-bottom: 1.25rem; font-size: 0.98rem; }
 .about-text p:last-of-type { margin-bottom: 0; }
@@ -979,7 +981,8 @@ a.service-row { display: grid; }
 @media (max-width: 900px) {
   .intro-statement .wrap { grid-template-columns: 1fr; }
   .about-block { grid-template-columns: 1fr; }
-  .about-portrait { aspect-ratio: 4/3; max-width: 480px; }
+  .about-portrait { height: 420px; aspect-ratio: auto; max-width: 100%; }
+  .about-portrait img { object-position: center 20% !important; }
   .feature-strip { grid-template-columns: 1fr; }
   .feature-image { aspect-ratio: 16/10; }
   .csr-inner { grid-template-columns: 1fr; }
