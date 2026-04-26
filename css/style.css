@@ -1612,11 +1612,13 @@ a, button, .btn, .filter-btn, .faq-question,
   height: 44px;
 }
 
-/* 8. Nav enquire pill — minimum touch height */
-.nav-enquire {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
+/* 8. Nav enquire pill — minimum touch height (desktop only; mobile hides via media query above) */
+@media (min-width: 769px) {
+  .nav-enquire {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
 }
 
 /* 9. Hero CTA buttons — full-width, centred on mobile for easy thumb tap */
