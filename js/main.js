@@ -251,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
             form.reset();
             form.querySelectorAll('.form-group').forEach(g => g.classList.remove('has-error'));
           } else {
+            console.error('Web3Forms error:', res);
             showNotif('Something went wrong. Please email us directly at suresh@sainirmaanarchitects.com', 'error');
           }
         })

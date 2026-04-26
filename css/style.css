@@ -585,6 +585,7 @@ a.service-row { display: grid; }
 .about-portrait {
   position: relative;
   aspect-ratio: 3/4;
+  order: 2;
 }
 .about-portrait-img {
   width: 100%;
@@ -982,7 +983,7 @@ a.service-row { display: grid; }
 @media (max-width: 900px) {
   .intro-statement .wrap { grid-template-columns: 1fr; }
   .about-block { grid-template-columns: 1fr; }
-  .about-portrait { height: 460px; aspect-ratio: auto; max-width: 100%; }
+  .about-portrait { height: 460px; aspect-ratio: auto; max-width: 100%; order: -1; }
   .about-portrait img { object-position: center 25% !important; }
   .feature-strip { grid-template-columns: 1fr; }
   .feature-image { aspect-ratio: 16/10; }
