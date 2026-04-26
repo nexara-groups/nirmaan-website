@@ -997,6 +997,7 @@ a.service-row { display: grid; }
   .nav-links { display: none; flex-direction: column; }
   .nav-enquire { display: none; }
   .hamburger { display: flex; }
+  .section { padding: clamp(2.5rem, 6vw, 4rem) 0; }
   .nav-links.open {
     display: flex;
     position: fixed; inset: 0;
@@ -1096,7 +1097,15 @@ a.service-row { display: grid; }
   background-size: cover;
   background-position: center;
 }
-.page-hero .page-hero-bg { display: none; }
+/* Dark overlay for all page heroes — ensures text is always readable */
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(20,20,20,0.68);
+  z-index: 0;
+}
+.page-hero-content, .page-hero .page-hero-content { position: relative; z-index: 1; }
 
 /* portrait-placeholder min height */
 .portrait-placeholder { min-height: 420px; background: var(--stone); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; }
