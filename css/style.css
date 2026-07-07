@@ -831,12 +831,13 @@ a.service-row { display: grid; }
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem 2rem;
-  padding: 2rem 0 2.5rem;
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.32);
+  gap: 0.65rem 2rem;
+  padding: 2.25rem 0 2.75rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.42);
 }
 .footer-bottom > p { margin: 0; }
+.footer-bottom > p:last-of-type { color: rgba(255,255,255,0.3); }
 
 /* ---------- BACK TO TOP ---------- */
 .btt {
@@ -2121,22 +2122,22 @@ h1, h2, h3, .article-body p, .article-body li,
 .cc-switch input:focus-visible + .cc-slider { outline: 2px solid var(--ink); outline-offset: 2px; }
 
 /* -- Footer legal links row -- */
-/* Legal + credit row sits on its own line, above the copyright/location line,
-   separated by a hairline for clear, uncramped hierarchy. */
+/* Sub-footer top row: legal nav (with middot separators) on the left,
+   build credit on the right, divided from the copyright line by a hairline. */
 .footer-legal {
   order: -1;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem 1.75rem;
+  gap: 0.5rem 0;
   margin-bottom: 1.75rem;
   padding-bottom: 1.75rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
-.footer-legal a, .footer-legal-btn {
+.footer-legal > a, .footer-legal > .footer-legal-btn {
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.55);
   background: none;
   border: none;
   padding: 0;
@@ -2145,22 +2146,32 @@ h1, h2, h3, .article-body p, .article-body li,
   letter-spacing: 0.01em;
   transition: color var(--dur-fast) var(--ease);
 }
-.footer-legal a:hover, .footer-legal-btn:hover { color: var(--orange); }
+/* middot separators between the legal nav items only */
+.footer-legal > a:not(:first-child)::before,
+.footer-legal > .footer-legal-btn::before {
+  content: '·';
+  margin: 0 0.85rem;
+  color: rgba(255, 255, 255, 0.28);
+}
+.footer-legal > a:hover, .footer-legal > .footer-legal-btn:hover { color: var(--orange); }
+.footer-legal > a:hover::before, .footer-legal > .footer-legal-btn:hover::before { color: rgba(255, 255, 255, 0.28); }
 .footer-credit {
   margin-left: auto;
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(255, 255, 255, 0.4);
 }
-.footer-credit a {
-  color: rgba(255, 255, 255, 0.62);
+.footer-credit > a {
+  color: rgba(255, 255, 255, 0.65);
   font-weight: 500;
   transition: color var(--dur-fast) var(--ease);
 }
-.footer-credit a:hover { color: var(--orange); }
+.footer-credit > a:hover { color: var(--orange); }
 @media (max-width: 640px) {
-  .footer-legal { gap: 0.6rem 1.25rem; }
-  .footer-credit { margin-left: 0; width: 100%; padding-top: 0.25rem; }
-  .footer-bottom { gap: 0.35rem 1.5rem; }
+  .footer-legal { margin-bottom: 1.4rem; padding-bottom: 1.4rem; }
+  .footer-legal > a:not(:first-child)::before,
+  .footer-legal > .footer-legal-btn::before { margin: 0 0.6rem; }
+  .footer-credit { margin-left: 0; width: 100%; padding-top: 0.85rem; }
+  .footer-bottom { gap: 0.4rem 1.5rem; padding: 1.75rem 0 2.25rem; }
 }
 
 @media (max-width: 768px) {
