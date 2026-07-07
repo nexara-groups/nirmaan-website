@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sai Nirmaan Architects — Coming Soon</title>
-  <meta name="description" content="Sai Nirmaan Architects — Architecture, Interior & Landscape practice. Website launching soon. Based in Visakhapatnam & Hyderabad." />
+  <title>Sai Nirmaan Architects · Coming Soon</title>
+  <meta name="description" content="Sai Nirmaan Architects · Architecture, Interior & Landscape practice. Website launching soon. Based in Visakhapatnam & Hyderabad." />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -249,6 +249,25 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
+    // Google Consent Mode v2 — default DENIED until the visitor consents (DPDP Act 2023).
+    // The consent banner in main.js calls gtag('consent','update',...) once the user chooses.
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    try {
+      var _sna = JSON.parse(localStorage.getItem('sna-consent') || 'null');
+      if (_sna && _sna.analytics === true) {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+
     gtag('config', 'G-XS4JHG10ZB');
   </script>
 </head>

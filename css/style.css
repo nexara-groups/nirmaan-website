@@ -6,7 +6,7 @@
 
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; font-size: 16px; -webkit-font-smoothing: antialiased; background: var(--cream); }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
@@ -1419,9 +1419,27 @@ select.form-control:focus { border-color: var(--orange); outline: none; }
 /* Scroll-to-anchor offset — compensates for fixed nav height */
 :target { scroll-margin-top: 100px; }
 
-/* ---------- PAGE FADE TRANSITION ---------- */
-@keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
-body { animation: pageFadeIn 0.28s ease; }
+/* ---------- PAGE TRANSITION (View Transitions API) ----------
+   Cross-document fade. The browser keeps the outgoing page painted until
+   the incoming page is ready, so there is never a white gap. Browsers
+   without support simply navigate instantly (no flash, no animation). */
+@view-transition { navigation: auto; }
+
+/* Pure opacity cross-fade — no transform, so no gap/white bar at the edges */
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in  { from { opacity: 0; } }
+
+::view-transition-old(root) {
+  animation: vt-out 0.28s var(--ease) both;
+}
+::view-transition-new(root) {
+  animation: vt-in 0.38s var(--ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none; }
+}
 
 /* ---------- HERO STATS MOBILE ---------- */
 .hero-stats-mobile {
@@ -1702,3 +1720,503 @@ html, body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   v2.2 REFINEMENT LAYER — editorial polish & consistency
+   Typography rhythm, orchestrated motion, unified interactions.
+   ============================================================ */
+
+/* -- Selection & scrollbar: branded, quiet -- */
+::selection { background: var(--orange); color: var(--white); }
+html { scrollbar-width: thin; scrollbar-color: #C9C6BC var(--cream); }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: #C9C6BC; border: 2px solid var(--cream); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-muted); }
+
+/* -- Typography rhythm -- */
+h1, h2 { text-wrap: balance; }
+h2 { letter-spacing: -0.015em; }
+.section-header p, .intro-right p, .article-body p { text-wrap: pretty; }
+
+/* Centered section headers: mirror the eyebrow rule on both sides */
+.section-header .eyebrow::after,
+.section-header .section-label::after {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1.5px;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+.section-header[style*="text-align:left"] .eyebrow::after,
+.section-header[style*="text-align:left"] .section-label::after { display: none; }
+
+/* -- Nav: frosted glass when solid -- */
+.nav.solid {
+  background: rgba(250, 250, 247, 0.86);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: 0 8px 24px rgba(26, 26, 26, 0.04);
+}
+
+/* -- Hero: bottom scrim for headline legibility over bright imagery -- */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(12, 12, 12, 0.55) 0%, rgba(12, 12, 12, 0) 45%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* -- Orchestrated page-load reveal: hero -- */
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-label   { animation: riseIn 0.8s var(--ease) 0.15s backwards; }
+.hero h1      { animation: riseIn 0.9s var(--ease) 0.30s backwards; }
+.hero-sub     { animation: riseIn 0.9s var(--ease) 0.45s backwards; }
+.hero-actions { animation: riseIn 0.9s var(--ease) 0.60s backwards; }
+.hero-stats   { animation: riseIn 1.0s var(--ease) 0.80s backwards; }
+
+/* -- Orchestrated page-load reveal: inner-page heroes -- */
+.page-hero .breadcrumb        { animation: riseIn 0.7s var(--ease) 0.10s backwards; }
+.page-hero h1                 { animation: riseIn 0.8s var(--ease) 0.22s backwards; }
+.page-hero .page-hero-content p { animation: riseIn 0.8s var(--ease) 0.36s backwards; }
+
+/* -- Scroll-reveal stagger inside grids (fade-in/fade-up delays) -- */
+.pgrid > *:nth-child(3n+2),
+.blog-grid > *:nth-child(3n+2),
+.blog-grid-el > *:nth-child(3n+2),
+.testimonials-track > *:nth-child(3n+2),
+.process-grid > *:nth-child(3n+2) { transition-delay: 0.09s; }
+.pgrid > *:nth-child(3n+3),
+.blog-grid > *:nth-child(3n+3),
+.blog-grid-el > *:nth-child(3n+3),
+.testimonials-track > *:nth-child(3n+3),
+.process-grid > *:nth-child(3n+3) { transition-delay: 0.18s; }
+
+/* -- Unified button behaviour: consistent lift + weight across variants -- */
+.btn.btn-primary, .btn.btn-outline { border-width: 1.5px; }
+.btn.btn-primary:hover,
+.btn.btn-outline:hover,
+.btn-ghost:hover,
+.btn-ghost-ink:hover {
+  transform: translateY(-2px);
+}
+.btn:active { transform: translateY(0); }
+
+/* -- Global keyboard focus (matches brand, non-intrusive for mouse) -- */
+a:focus-visible,
+button:focus-visible,
+.form-control:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+
+/* -- Modal chrome: frosted controls -- */
+.modal-nav, .modal-close {
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* -- Inner-page hero stats: flow as a horizontal row, not the homepage's
+      absolute bottom-right column (which overflows the shorter hero) -- */
+.page-hero .hero-stats {
+  position: static;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  border-left: none;
+  padding-left: 0;
+}
+.page-hero .hero-stats > div {
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  padding-left: 1.5rem;
+}
+@media (max-width: 768px) {
+  .page-hero .hero-stats { display: flex; }
+}
+
+/* -- Scroll hint: hide where it crowds the CTA buttons -- */
+@media (max-width: 1100px) {
+  .scroll-hint { display: none; }
+}
+
+/* ----- Skip-to-content link ----- */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2000;
+  padding: 0.6rem 1.1rem;
+  background: var(--ink);
+  color: #fff;
+  font: 600 0.85rem/1 var(--sans);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transform: translateY(-150%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus { transform: translateY(0); outline: 2px solid var(--orange); outline-offset: 2px; }
+
+/* ----- Keyboard focus for portfolio cards ----- */
+.pitem:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+/* ----- Floating WhatsApp button ----- */
+.wa-float {
+  position: fixed;
+  right: 2rem;
+  bottom: 5.5rem; /* stacked above the back-to-top button (bottom: 2rem) */
+  z-index: 1500;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.25s ease, visibility 0.25s;
+}
+.wa-float.show { opacity: 1; visibility: visible; transform: translateY(0); }
+.wa-float svg { width: 30px; height: 30px; }
+.wa-float:hover { transform: scale(1.08); box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28); }
+.wa-float:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+@media (max-width: 600px) {
+  .wa-float { width: 48px; height: 48px; right: 1.25rem; bottom: 4.75rem; }
+  .wa-float svg { width: 26px; height: 26px; }
+}
+
+/* ============================================================
+   v2.3 VISUAL ENHANCEMENTS — editorial typography, film grain,
+   duotone imagery, animated counters.
+   ============================================================ */
+
+/* -- 1. Typography: kerning, ligatures, contextual figures -- */
+body { font-feature-settings: "kern" 1, "liga" 1, "calt" 1; }
+/* Oldstyle figures in running serif prose reads as typeset, not rendered */
+h1, h2, h3, .article-body p, .article-body li,
+.blog-article p, .blog-article li, .intro-right p {
+  font-feature-settings: "onum" 1, "liga" 1, "kern" 1;
+}
+/* Stats stay lining + tabular so digits align in a column */
+.hero-stat-n, .cred-value, .csr-num-val, .process-num, .service-number,
+.service-num {
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+/* Playfair italic as a quiet accent voice for captions */
+.article-body figcaption {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-muted);
+}
+
+/* Drop cap on the opening paragraph of blog articles */
+.article-body > p:first-of-type::first-letter,
+.blog-article > p:first-of-type::first-letter {
+  float: left;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 3.5em;
+  line-height: 0.78;
+  padding: 0.02em 0.14em 0 0;
+  color: var(--ink);
+}
+
+/* -- 2. Film grain on dark sections — warmth & depth, kills flat digital look -- */
+.hero, .page-hero, .csr-band, .cta-strip { position: relative; }
+.hero::before, .page-hero::before, .csr-band::before, .cta-strip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+/* Keep hero foreground content above the grain layer */
+.hero-content, .page-hero-content { z-index: 3; }
+
+/* -- 3. Portfolio imagery: desaturate at rest, full colour on hover -- */
+.pitem img {
+  filter: grayscale(0.45) contrast(1.03);
+  transition: transform 0.7s var(--ease), opacity 0.4s var(--ease), filter 0.5s var(--ease);
+}
+.pitem:hover img { filter: grayscale(0) contrast(1); }
+.pitem[style*="background-image"]::before {
+  -webkit-backdrop-filter: grayscale(0.45) contrast(1.03);
+  backdrop-filter: grayscale(0.45) contrast(1.03);
+  transition: background 0.4s var(--ease), -webkit-backdrop-filter 0.5s var(--ease), backdrop-filter 0.5s var(--ease);
+}
+.pitem[style*="background-image"]:hover::before {
+  -webkit-backdrop-filter: grayscale(0);
+  backdrop-filter: grayscale(0);
+}
+
+/* -- 4. Stat counters animate from zero (JS toggles .counting) -- */
+.count-target { font-variant-numeric: tabular-nums; }
+
+/* Reduced-motion: no grain flicker concerns, but disable counter jumpiness handled in JS */
+@media (prefers-reduced-motion: reduce) {
+  .pitem img { filter: grayscale(0.3); }
+}
+
+/* ============================================================
+   COOKIE CONSENT (DPDP Act 2023) — banner, preferences modal,
+   footer legal links.
+   ============================================================ */
+
+/* -- Banner -- */
+.cc-banner {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 1800;
+  background: var(--ink);
+  border-top: 2px solid var(--orange);
+  transform: translateY(110%);
+  transition: transform 0.4s var(--ease);
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.28);
+}
+.cc-banner.show { transform: translateY(0); }
+.cc-banner-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.35rem var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.cc-banner-text strong {
+  display: block;
+  color: var(--white);
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+.cc-banner-text p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 70ch;
+}
+.cc-banner-text a { color: var(--orange); text-decoration: underline; text-underline-offset: 2px; }
+.cc-banner-text a:hover { color: var(--orange-dk); }
+.cc-banner-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* -- Shared consent buttons -- */
+.cc-btn {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.3rem;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease);
+  white-space: nowrap;
+}
+.cc-btn-solid { background: var(--orange); color: var(--white); border-color: var(--orange); }
+.cc-btn-solid:hover { background: var(--orange-dk); border-color: var(--orange-dk); }
+.cc-btn-ghost { background: transparent; color: rgba(255, 255, 255, 0.85); border-color: rgba(255, 255, 255, 0.28); }
+.cc-btn-ghost:hover { border-color: var(--white); color: var(--white); }
+
+/* -- Preferences modal -- */
+.cc-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3200;
+  background: rgba(10, 10, 10, 0.72);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+.cc-modal.open { opacity: 1; pointer-events: auto; }
+.cc-modal-card {
+  position: relative;
+  background: var(--cream);
+  max-width: 560px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  transform: translateY(12px);
+  transition: transform var(--dur) var(--ease);
+}
+.cc-modal.open .cc-modal-card { transform: translateY(0); }
+.cc-modal-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.cc-modal-lead { font-size: 0.86rem; color: var(--ink-soft); margin-bottom: 1.75rem; line-height: 1.65; }
+.cc-modal-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  width: 38px; height: 38px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink-muted);
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--dur-fast) var(--ease);
+}
+.cc-modal-close:hover { border-color: var(--ink); color: var(--ink); }
+.cc-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--rule);
+}
+.cc-row-text { flex: 1; }
+.cc-row-text strong { display: block; font-size: 0.92rem; color: var(--ink); margin-bottom: 0.2rem; }
+.cc-row-text span { font-size: 0.8rem; color: var(--ink-muted); line-height: 1.55; }
+.cc-row-text code { font-family: monospace; font-size: 0.78rem; background: var(--stone); padding: 0.05em 0.35em; border-radius: 2px; }
+.cc-locked {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  flex-shrink: 0;
+}
+.cc-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+.cc-modal-actions .cc-btn-ghost { color: var(--ink-soft); border-color: var(--rule); }
+.cc-modal-actions .cc-btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+
+/* -- Toggle switch -- */
+.cc-switch { position: relative; display: inline-block; width: 46px; height: 26px; flex-shrink: 0; }
+.cc-switch input { opacity: 0; width: 0; height: 0; }
+.cc-slider {
+  position: absolute; inset: 0;
+  background: #CFCDC5;
+  border-radius: 26px;
+  transition: background var(--dur-fast) var(--ease);
+}
+.cc-slider::before {
+  content: '';
+  position: absolute;
+  height: 20px; width: 20px;
+  left: 3px; top: 3px;
+  background: var(--white);
+  border-radius: 50%;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.cc-switch input:checked + .cc-slider { background: var(--orange); }
+.cc-switch input:checked + .cc-slider::before { transform: translateX(20px); }
+.cc-switch input:focus-visible + .cc-slider { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* -- Footer legal links row -- */
+.footer-legal {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+.footer-legal a, .footer-legal-btn {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: color var(--dur-fast) var(--ease);
+}
+.footer-legal a:hover, .footer-legal-btn:hover { color: var(--orange); }
+
+@media (max-width: 768px) {
+  .cc-banner-inner { flex-direction: column; align-items: stretch; gap: 1rem; }
+  .cc-banner-actions { justify-content: stretch; }
+  .cc-banner-actions .cc-btn { flex: 1; text-align: center; }
+}
+
+/* ---------- LEGAL DOCUMENT PAGES (privacy / cookies / terms) ---------- */
+.legal-doc {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 5rem) var(--gutter);
+}
+.legal-doc .legal-updated {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.legal-doc h2 { font-size: clamp(1.3rem, 2.2vw, 1.7rem); margin: 2.75rem 0 1rem; }
+.legal-doc h3 { font-size: 1.1rem; margin: 1.75rem 0 0.6rem; }
+.legal-doc p, .legal-doc li { font-size: 0.95rem; line-height: 1.8; color: var(--ink-soft); }
+.legal-doc p { margin-bottom: 1rem; }
+.legal-doc ul { padding-left: 1.4rem; margin-bottom: 1.25rem; }
+.legal-doc li { margin-bottom: 0.5rem; }
+.legal-doc a { color: var(--orange); text-decoration: underline; text-underline-offset: 2px; }
+.legal-doc a:hover { color: var(--orange-dk); }
+.legal-doc strong { color: var(--ink); }
+.legal-doc table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.85rem;
+}
+.legal-doc th, .legal-doc td {
+  border: 1px solid var(--rule);
+  padding: 0.7rem 0.9rem;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.55;
+}
+.legal-doc th { background: var(--stone); font-weight: 700; color: var(--ink); }
+.legal-doc td code { font-family: monospace; font-size: 0.82rem; }
+.legal-note {
+  background: var(--stone);
+  border-left: 3px solid var(--orange);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+.legal-toc {
+  background: var(--stone);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2.5rem;
+  border-radius: var(--radius);
+}
+.legal-toc strong { display: block; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.75rem; }
+.legal-toc ol { padding-left: 1.2rem; margin: 0; }
+.legal-toc li { font-size: 0.88rem; margin-bottom: 0.35rem; }

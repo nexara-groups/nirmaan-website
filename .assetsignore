@@ -1,0 +1,13 @@
+# Files excluded from Cloudflare Pages/Workers asset upload (and wrangler dev)
+# Keeps internal docs, tooling, and the git repo out of the public build.
+.git
+.github
+.claude
+docs
+CLAUDE.md
+update-summary.txt
+wrangler.jsonc
+.gitignore
+.assetsignore
+.DS_Store
+**/.DS_Store

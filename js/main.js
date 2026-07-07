@@ -63,6 +63,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.fade-in, .fade-up').forEach(el => io.observe(el));
 
+  /* ----- Animated stat counters ----- */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const countEls = document.querySelectorAll('.hero-stat-n, .cred-value, .csr-num-val');
+
+  function animateCount(el) {
+    const raw = el.textContent;
+    const match = raw.match(/\d+/);
+    if (!match) return;
+    const target = parseInt(match[0], 10);
+    const idx = el.innerHTML.indexOf(match[0]);
+    const prefix = el.innerHTML.slice(0, idx);
+    const suffix = el.innerHTML.slice(idx + match[0].length);
+    if (reduceMotion || target === 0) return; // leave final value untouched
+    const duration = 1100;
+    let startTs = null;
+    function step(ts) {
+      if (startTs === null) startTs = ts;
+      const p = Math.min((ts - startTs) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.innerHTML = prefix + Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if (countEls.length) {
+    const countIO = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { animateCount(e.target); countIO.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    countEls.forEach(el => countIO.observe(el));
+  }
+
   /* ----- Portfolio filter ----- */
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -113,6 +147,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.querySelectorAll('.pitem[data-title]').forEach(item => {
+    // Keyboard access: cards are clickable divs, so expose them as buttons
+    item.setAttribute('role', 'button');
+    item.setAttribute('tabindex', '0');
+    if (!item.getAttribute('aria-label')) {
+      item.setAttribute('aria-label', `${item.dataset.title || 'Project'} — view gallery`);
+    }
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
+    });
     item.addEventListener('click', () => {
       const d = item.dataset;
       const img = item.querySelector('img');
@@ -295,17 +338,176 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ----- Page fade transition ----- */
-  document.querySelectorAll('a[href]').forEach(a => {
-    const href = a.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') ||
-        href.startsWith('http') || a.getAttribute('target') === '_blank') return;
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      document.body.style.transition = 'opacity 0.18s ease';
-      document.body.style.opacity = '0';
-      setTimeout(() => { window.location.href = href; }, 185);
+  /* ----- Skip-to-content link (injected, no-JS pages fall back gracefully) ----- */
+  (() => {
+    const target = document.querySelector('main, .page-hero, .hero, section');
+    if (target && !target.id) target.id = 'main';
+    const skip = document.createElement('a');
+    skip.className = 'skip-link';
+    skip.href = '#' + (target?.id || 'main');
+    skip.textContent = 'Skip to content';
+    skip.addEventListener('click', () => {
+      if (target) { target.setAttribute('tabindex', '-1'); target.focus(); }
     });
-  });
+    document.body.insertBefore(skip, document.body.firstChild);
+  })();
+
+  /* ----- Floating WhatsApp button ----- */
+  (() => {
+    const wa = document.createElement('a');
+    wa.className = 'wa-float';
+    wa.href = 'https://wa.me/919704201438?text=' +
+      encodeURIComponent("Hi Sai Nirmaan Architects, I'd like to discuss a project.");
+    wa.target = '_blank';
+    wa.rel = 'noopener';
+    wa.setAttribute('aria-label', 'Chat with us on WhatsApp');
+    wa.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-2.8.8.7-2.8-.2-.3a8.2 8.2 0 1 1 6.9 3.7z"/></svg>';
+    document.body.appendChild(wa);
+    // Appear on scroll (like back-to-top) so it never crowds the hero;
+    // pages too short to scroll show it immediately
+    const waScroll = () => {
+      const shortPage = document.documentElement.scrollHeight - window.innerHeight < 300;
+      wa.classList.toggle('show', shortPage || window.scrollY > 160);
+    };
+    window.addEventListener('scroll', waScroll, { passive: true });
+    waScroll();
+  })();
+
+  /* ----- Cookie consent (DPDP Act 2023) + Google Consent Mode wiring ----- */
+  (() => {
+    const STORE_KEY = 'sna-consent';
+    const read = () => { try { return JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); } catch (e) { return null; } };
+
+    // On rejection/withdrawal, actively delete any Google Analytics cookies so the
+    // choice takes effect immediately (DPDP: withdrawal as effective as consent).
+    const clearGaCookies = () => {
+      const host = location.hostname;
+      const domains = ['', host, '.' + host];
+      const parts = host.split('.');
+      if (parts.length > 2) domains.push('.' + parts.slice(-2).join('.'));
+      document.cookie.split(';').forEach(c => {
+        const name = c.split('=')[0].trim();
+        if (name.startsWith('_ga') || name === '_gid') {
+          domains.forEach(d => {
+            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/' + (d ? ';domain=' + d : '');
+          });
+        }
+      });
+    };
+
+    const save = (analytics) => {
+      const rec = { necessary: true, analytics: !!analytics, ts: new Date().toISOString(), v: 1 };
+      try { localStorage.setItem(STORE_KEY, JSON.stringify(rec)); } catch (e) {}
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', { 'analytics_storage': analytics ? 'granted' : 'denied' });
+      }
+      if (!analytics) clearGaCookies();
+    };
+
+    const banner = document.createElement('div');
+    banner.className = 'cc-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-label', 'Cookie consent');
+    banner.innerHTML =
+      '<div class="cc-banner-inner">' +
+        '<div class="cc-banner-text">' +
+          '<strong>We value your privacy</strong>' +
+          "<p>We use essential cookies to run this site and, with your consent, Google Analytics to understand how it's used. See our <a href=\"/cookie-policy.html\">Cookie Policy</a> and <a href=\"/privacy-policy.html\">Privacy Policy</a>.</p>" +
+        '</div>' +
+        '<div class="cc-banner-actions">' +
+          '<button type="button" class="cc-btn cc-btn-ghost" data-cc="prefs">Preferences</button>' +
+          '<button type="button" class="cc-btn cc-btn-ghost" data-cc="reject">Reject all</button>' +
+          '<button type="button" class="cc-btn cc-btn-solid" data-cc="accept">Accept all</button>' +
+        '</div>' +
+      '</div>';
+
+    const modal = document.createElement('div');
+    modal.className = 'cc-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Cookie preferences');
+    modal.innerHTML =
+      '<div class="cc-modal-card">' +
+        '<button type="button" class="cc-modal-close" data-cc="close" aria-label="Close">&#x2715;</button>' +
+        '<h3>Cookie Preferences</h3>' +
+        "<p class=\"cc-modal-lead\">Choose which cookies we may use. Essential cookies are always on because the site can't function without them. You can change this anytime from the footer.</p>" +
+        '<div class="cc-row">' +
+          '<div class="cc-row-text"><strong>Strictly necessary</strong><span>Remembers your cookie choice and keeps the site secure. Always active.</span></div>' +
+          '<span class="cc-locked">Always on</span>' +
+        '</div>' +
+        '<div class="cc-row">' +
+          '<div class="cc-row-text"><strong>Analytics — Google Analytics</strong><span>Helps us understand visits and improve the site. Sets <code>_ga</code> / <code>_ga_*</code> cookies.</span></div>' +
+          '<label class="cc-switch"><input type="checkbox" id="cc-analytics"><span class="cc-slider"></span></label>' +
+        '</div>' +
+        '<div class="cc-modal-actions">' +
+          '<button type="button" class="cc-btn cc-btn-ghost" data-cc="reject">Reject all</button>' +
+          '<button type="button" class="cc-btn cc-btn-solid" data-cc="save">Save choices</button>' +
+        '</div>' +
+      '</div>';
+
+    document.body.appendChild(banner);
+    document.body.appendChild(modal);
+
+    const analyticsToggle = modal.querySelector('#cc-analytics');
+    const hideBanner = () => banner.classList.remove('show');
+    const openModal = () => {
+      const cur = read();
+      analyticsToggle.checked = cur ? !!cur.analytics : false;
+      modal.classList.add('open');
+      setTimeout(() => modal.querySelector('.cc-modal-close')?.focus(), 50);
+    };
+    const closeModal = () => modal.classList.remove('open');
+    const finalize = (analytics) => { save(analytics); hideBanner(); closeModal(); };
+
+    banner.addEventListener('click', e => {
+      const a = e.target.closest('[data-cc]'); if (!a) return;
+      const act = a.dataset.cc;
+      if (act === 'accept') finalize(true);
+      else if (act === 'reject') finalize(false);
+      else if (act === 'prefs') openModal();
+    });
+    modal.addEventListener('click', e => {
+      if (e.target === modal) { closeModal(); return; }
+      const a = e.target.closest('[data-cc]'); if (!a) return;
+      const act = a.dataset.cc;
+      if (act === 'close') closeModal();
+      else if (act === 'reject') finalize(false);
+      else if (act === 'save') finalize(analyticsToggle.checked);
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    // Reopen preferences anytime (footer link / consent withdrawal — DPDP requires
+    // withdrawal to be as easy as giving consent).
+    window.openCookiePreferences = openModal;
+
+    if (!read()) banner.classList.add('show');
+  })();
+
+  /* ----- Footer legal links (single source across all pages) ----- */
+  (() => {
+    const fb = document.querySelector('.footer-bottom');
+    if (!fb || fb.querySelector('.footer-legal')) return;
+    const legal = document.createElement('div');
+    legal.className = 'footer-legal';
+    [['Privacy Policy', '/privacy-policy.html'], ['Cookie Policy', '/cookie-policy.html'], ['Terms of Use', '/terms-of-use.html']]
+      .forEach(([label, href]) => {
+        const a = document.createElement('a');
+        a.href = href; a.textContent = label;
+        legal.appendChild(a);
+      });
+    const prefsBtn = document.createElement('button');
+    prefsBtn.type = 'button';
+    prefsBtn.className = 'footer-legal-btn';
+    prefsBtn.textContent = 'Cookie Preferences';
+    prefsBtn.addEventListener('click', () => window.openCookiePreferences && window.openCookiePreferences());
+    legal.appendChild(prefsBtn);
+    fb.appendChild(legal);
+  })();
+
+  /* Page transitions are handled natively via the CSS View Transitions API
+     (@view-transition), so no JS link interception is needed — this avoids
+     the white-flash the old opacity fade-out caused. */
 
 });

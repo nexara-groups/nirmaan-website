@@ -45,6 +45,25 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
+    // Google Consent Mode v2 — default DENIED until the visitor consents (DPDP Act 2023).
+    // The consent banner in main.js calls gtag('consent','update',...) once the user chooses.
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    try {
+      var _sna = JSON.parse(localStorage.getItem('sna-consent') || 'null');
+      if (_sna && _sna.analytics === true) {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+
     gtag('config', 'G-XS4JHG10ZB');
   </script>
   <script type="application/ld+json">
@@ -115,9 +134,9 @@
 
         <h2>Understanding the Site Before the Sketch</h2>
 
-        <p>Every project in this region must begin with rigorous site analysis. Not the kind that takes three days and produces a pretty diagram, but the kind that takes weeks—observing, measuring, understanding. Wind direction changes seasonally along the coast, and this matters enormously. Prevailing winds during the dry season blow differently during the monsoon. A building that captures cooling breezes in April might act as a wind funnel in October.</p>
+        <p>Every project in this region must begin with rigorous site analysis. Not the kind that takes three days and produces a pretty diagram, but the kind that takes weeks: observing, measuring, understanding. Wind direction changes seasonally along the coast, and this matters enormously. Prevailing winds during the dry season blow differently during the monsoon. A building that captures cooling breezes in April might act as a wind funnel in October.</p>
 
-        <p>Solar orientation is equally critical. The intensity of the sun in Visakhapatnam or Srikakulam is almost unforgiving. We map sun paths for every month, not just the summer solstice. North-facing walls receive radiant heat from the sky even when not in direct sun. East-facing bedrooms become unbearably hot by 8 AM. West-facing living spaces trap thermal mass that radiates heat deep into the night. The site's microclimate—its existing vegetation, water bodies, built surroundings—must inform every design decision.</p>
+        <p>Solar orientation is equally critical. The intensity of the sun in Visakhapatnam or Srikakulam is almost unforgiving. We map sun paths for every month, not just the summer solstice. North-facing walls receive radiant heat from the sky even when not in direct sun. East-facing bedrooms become unbearably hot by 8 AM. West-facing living spaces trap thermal mass that radiates heat deep into the night. The site's microclimate (its existing vegetation, water bodies, built surroundings) must inform every design decision.</p>
 
         <p>Understanding ground conditions is equally important. High water tables in low-lying coastal areas mean conventional basements are impossible; water ingress becomes inevitable. Saline soil can damage concrete if not properly treated. These are not problems to be solved with brute force (deeper foundations, thicker concrete) but rather to be acknowledged and designed around.</p>
 
@@ -127,29 +146,29 @@
 
         <p>The best materials for the coast are often those that have proven themselves over centuries: local granite from quarries near Visakhapatnam, which has weather-tested stability; Mangalore clay tiles for roofing, which shed water brilliantly and allow the structure to breathe; lime plaster, which is hygroscopic and regulates internal humidity naturally; locally-sourced hardwood like teak and sal, which have natural oil content that resists rot.</p>
 
-        <p>Modern materials can work, but require specification discipline. Concrete must have adequate cover and low water-cement ratios. Stainless steel is essential for any exposed fasteners or fittings. Paint systems must be marine-grade. The temptation to cut costs with standard specifications is strong—and invariably leads to failure. We have visited homes built just fifteen years ago where inappropriate material choices have already begun to deteriorate visibly.</p>
+        <p>Modern materials can work, but require specification discipline. Concrete must have adequate cover and low water-cement ratios. Stainless steel is essential for any exposed fasteners or fittings. Paint systems must be marine-grade. The temptation to cut costs with standard specifications is strong, and invariably leads to failure. We have visited homes built just fifteen years ago where inappropriate material choices have already begun to deteriorate visibly.</p>
 
         <img src="../images/architectural/mr-rachit-jsw-duvvada.jpg" alt="Coastal residential architecture detail showing local materials and ventilation design" />
 
         <h2>Passive Design for a Hot-Humid Climate</h2>
 
-        <p>Mechanical cooling is expensive and environmentally irresponsible for most of the year in this region. The climate demands passive design strategies that work with nature, not against it. Cross-ventilation is non-negotiable. We design buildings with deep verandahs on the weather side—typically west and south—that create air pockets that cool approaching breezes before they enter the living space. These are not decorative features; they are functional thermal buffers.</p>
+        <p>Mechanical cooling is expensive and environmentally irresponsible for most of the year in this region. The climate demands passive design strategies that work with nature, not against it. Cross-ventilation is non-negotiable. We design buildings with deep verandahs on the weather side (typically west and south) that create air pockets that cool approaching breezes before they enter the living space. These are not decorative features; they are functional thermal buffers.</p>
 
-        <p>Courtyards are powerful tools in this climate. A courtyard with strategic landscaping creates convective loops that pull cooler air into the home. The courtyard itself becomes an outdoor room during the cooler parts of the day. Shaded verandahs—properly proportioned based on latitude and sun angle—allow residents to use outdoor space most of the year rather than retreating into cooled interiors.</p>
+        <p>Courtyards are powerful tools in this climate. A courtyard with strategic landscaping creates convective loops that pull cooler air into the home. The courtyard itself becomes an outdoor room during the cooler parts of the day. Shaded verandahs, properly proportioned based on latitude and sun angle, allow residents to use outdoor space most of the year rather than retreating into cooled interiors.</p>
 
-        <p>Deep overhangs over windows are essential. A 1.2-meter overhang can reduce solar gain on a south-facing window by 60% during the cooling season while still allowing beneficial sun exposure in winter. Vegetation—particularly deciduous trees on the western side—provides dynamic shading that also transpires moisture into the air, further cooling the microclimate.</p>
+        <p>Deep overhangs over windows are essential. A 1.2-meter overhang can reduce solar gain on a south-facing window by 60% during the cooling season while still allowing beneficial sun exposure in winter. Vegetation, particularly deciduous trees on the western side, provides dynamic shading that also transpires moisture into the air, further cooling the microclimate.</p>
 
         <h2>Rooted in Local Character</h2>
 
-        <p>Coastal Andhra has a rich vernacular tradition that evolved over centuries to respond to exactly these climatic challenges. Red oxide flooring, which is cool to the touch and naturally antibacterial; carved wooden screens that allow air flow while filtering harsh light; sloping roofs that shed water rapidly; open pavilions that provide shelter without creating enclosed heat traps. These are not aesthetic choices—they are encoded climate wisdom.</p>
+        <p>Coastal Andhra has a rich vernacular tradition that evolved over centuries to respond to exactly these climatic challenges. Red oxide flooring, which is cool to the touch and naturally antibacterial; carved wooden screens that allow air flow while filtering harsh light; sloping roofs that shed water rapidly; open pavilions that provide shelter without creating enclosed heat traps. These are not aesthetic choices; they are encoded climate wisdom.</p>
 
-        <p>The modern architect's challenge is to honor this wisdom without creating pastiche. We do not recreate vernacular buildings, which would be dishonest and often functionally inappropriate for contemporary living. Instead, we extract the principles—the understanding of ventilation, material behavior, spatial organization—and apply them within contemporary design language. A home might have the spatial logic and thermal strategy of traditional architecture but the comfort, durability, and amenity standards of the 21st century.</p>
+        <p>The modern architect's challenge is to honor this wisdom without creating pastiche. We do not recreate vernacular buildings, which would be dishonest and often functionally inappropriate for contemporary living. Instead, we extract the principles (the understanding of ventilation, material behavior, spatial organization) and apply them within contemporary design language. A home might have the spatial logic and thermal strategy of traditional architecture but the comfort, durability, and amenity standards of the 21st century.</p>
 
-        <blockquote>"The best coastal architecture doesn't fight the climate—it dances with it. When you understand humidity, salt air, wind, and sun as partners rather than enemies, you design buildings that are more durable, more comfortable, and more beautiful than anything imposed from the outside."</blockquote>
+        <blockquote>"The best coastal architecture doesn't fight the climate; it dances with it. When you understand humidity, salt air, wind, and sun as partners rather than enemies, you design buildings that are more durable, more comfortable, and more beautiful than anything imposed from the outside."</blockquote>
 
         <h2>Building a Resilient Future</h2>
 
-        <p>Climate change is intensifying the very challenges that characterize coastal Andhra. Cyclones are becoming more severe. Humidity patterns are shifting. Heat waves are more extreme. This makes thoughtful, climate-responsive design not a luxury but a necessity. Buildings designed with the principles outlined here—deep site analysis, appropriate material choices, passive thermal strategies, rooted in local knowledge—will perform well under these intensifying conditions.</p>
+        <p>Climate change is intensifying the very challenges that characterize coastal Andhra. Cyclones are becoming more severe. Humidity patterns are shifting. Heat waves are more extreme. This makes thoughtful, climate-responsive design not a luxury but a necessity. Buildings designed with the principles outlined here (deep site analysis, appropriate material choices, passive thermal strategies, rooted in local knowledge) will perform well under these intensifying conditions.</p>
 
         <p>At Sai Nirmaan, every project in this region begins with the same question: What does this place need? Not what we want to design, not what would work in another climate, but what this specific corner of Andhra Pradesh requires. The answer is always more interesting, more beautiful, and more resilient than we anticipated.</p>
 

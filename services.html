@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services — Sai Nirmaan Architects | Architecture & Design Services</title>
+  <title>Services · Sai Nirmaan Architects | Architecture & Design Services</title>
   <meta name="description" content="Full-spectrum architectural services in Visakhapatnam: Residential, Commercial, Interior, Landscape & Public Spaces. 300+ Projects. 15+ Years. 4+ States." />
   <meta name="keywords" content="architectural services Visakhapatnam, interior design services Andhra Pradesh, landscape architecture, Sai Nirmaan Architects" />
   <link rel="canonical" href="https://sainirmaanarchitects.com/services.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Sai Nirmaan Architects" />
   <meta property="og:url" content="https://sainirmaanarchitects.com/services.html" />
-  <meta property="og:title" content="Services — Sai Nirmaan Architects | Architecture & Design" />
+  <meta property="og:title" content="Services · Sai Nirmaan Architects | Architecture & Design" />
   <meta property="og:description" content="Full-spectrum architectural services: Residential Spaces, Commercial Spaces, Interior Design, Landscape, Public Spaces, and project management across South India. 300+ Projects. 15+ Years. 4+ States." />
   <meta property="og:image" content="https://sainirmaanarchitects.com/images/architectural/gj-medical-elevation.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Services — Sai Nirmaan Architects" />
-  <meta name="twitter:description" content="Full-spectrum architectural services across South India — from residential villas to institutional buildings." />
+  <meta name="twitter:title" content="Services · Sai Nirmaan Architects" />
+  <meta name="twitter:description" content="Full-spectrum architectural services across South India, from residential villas to institutional buildings." />
   <meta name="twitter:image" content="https://sainirmaanarchitects.com/images/architectural/gj-medical-elevation.jpg" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
@@ -91,7 +91,43 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
+    // Google Consent Mode v2 — default DENIED until the visitor consents (DPDP Act 2023).
+    // The consent banner in main.js calls gtag('consent','update',...) once the user chooses.
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    try {
+      var _sna = JSON.parse(localStorage.getItem('sna-consent') || 'null');
+      if (_sna && _sna.analytics === true) {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+
     gtag('config', 'G-XS4JHG10ZB');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"OfferCatalog",
+    "name":"Architecture & Design Services · Sai Nirmaan Architects",
+    "url":"https://sainirmaanarchitects.com/services.html",
+    "itemListElement":[
+      {"@type":"Service","name":"Residential Spaces","serviceType":"Residential Architecture","provider":{"@type":"ArchitecturalFirm","name":"Sai Nirmaan Architects"},"areaServed":"IN"},
+      {"@type":"Service","name":"Commercial Spaces","serviceType":"Commercial Architecture","provider":{"@type":"ArchitecturalFirm","name":"Sai Nirmaan Architects"},"areaServed":"IN"},
+      {"@type":"Service","name":"Interior Design","serviceType":"Interior Design","provider":{"@type":"ArchitecturalFirm","name":"Sai Nirmaan Architects"},"areaServed":"IN"},
+      {"@type":"Service","name":"Landscape Design","serviceType":"Landscape Architecture","provider":{"@type":"ArchitecturalFirm","name":"Sai Nirmaan Architects"},"areaServed":"IN"},
+      {"@type":"Service","name":"Public Spaces","serviceType":"Civic & Institutional Architecture","provider":{"@type":"ArchitecturalFirm","name":"Sai Nirmaan Architects"},"areaServed":"IN"},
+      {"@type":"Service","name":"Project Management","serviceType":"Project Management","provider":{"@type":"ArchitecturalFirm","name":"Sai Nirmaan Architects"},"areaServed":"IN"}
+    ]
+  }
   </script>
 </head>
 <body>
@@ -122,7 +158,7 @@
       <div class="wrap">
         <span class="section-label" style="margin-bottom:0.75rem;">Services</span>
         <h1>End-to-End Architectural Services</h1>
-        <p>From the first sketch to the final handover — we manage every stage of your project.</p>
+        <p>From the first sketch to the final handover, we manage every stage of your project.</p>
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Services</span>
         </nav>
@@ -140,8 +176,8 @@
           <div class="service-number">01</div>
           <span class="section-label">Residential Spaces</span>
           <h2>Homes Designed Around How You Live</h2>
-          <p>Every home we design begins with a conversation about life — how your family moves, gathers, rests, and grows. We translate this understanding into architecture that is beautiful, functional, and uniquely yours.</p>
-          <p>We work with individual homeowners, developers, and housing societies across Visakhapatnam, Hyderabad, Vijayawada, and Odisha — from single villas to multi-unit residential complexes.</p>
+          <p>Every home we design begins with a conversation about life: how your family moves, gathers, rests, and grows. We translate this understanding into architecture that is beautiful, functional, and uniquely yours.</p>
+          <p>We work with individual homeowners, developers, and housing societies across Visakhapatnam, Hyderabad, Vijayawada, and Odisha, from single villas to multi-unit residential complexes.</p>
           <ul class="service-includes">
             <li>Site analysis and feasibility assessment</li>
             <li>Concept design and schematic plans</li>
@@ -162,7 +198,7 @@
         <div class="service-detail-content">
           <div class="service-number">02</div>
           <span class="section-label">Commercial Spaces</span>
-          <h2>Buildings That Work Hard — and Look the Part</h2>
+          <h2>Buildings That Work Hard, and Look the Part</h2>
           <p>Commercial buildings are a brand in physical form. Whether it's a corporate office, a healthcare facility, or a retail environment, we design spaces that communicate your organisation's identity while maximising operational performance.</p>
           <p>We have experience working with corporate clients including India Bulls Housing Finance, Clove Dental, and institutional bodies across the region.</p>
           <ul class="service-includes">
@@ -185,7 +221,7 @@
           <div class="service-number">03</div>
           <span class="section-label">Interior Design</span>
           <h2>Interiors That Elevate Everyday Life</h2>
-          <p>We approach Interior Design as a natural extension of Architecture — not an afterthought. Every material, every light source, every detail of joinery contributes to a coherent spatial experience that feels intentional from the moment you walk in.</p>
+          <p>We approach Interior Design as a natural extension of Architecture, not an afterthought. Every material, every light source, every detail of joinery contributes to a coherent spatial experience that feels intentional from the moment you walk in.</p>
           <p>Our Interior Design portfolio spans luxury residential apartments, dental clinics, restaurants, and corporate offices across Hyderabad, Visakhapatnam, and Andhra Pradesh.</p>
           <ul class="service-includes">
             <li>Residential interior design (apartments, villas, penthouses)</li>
@@ -198,7 +234,7 @@
           </ul>
         </div>
         <div class="service-detail-image">
-          <img src="images/interior/pristine-508-regent-hero.jpg" alt="Luxury residential interior design — Pristine 508, The Regent" loading="lazy" />
+          <img src="images/interior/pristine-508-regent-hero.jpg" alt="Luxury residential interior design, Pristine 508, The Regent" loading="lazy" />
         </div>
       </div>
 
@@ -208,7 +244,7 @@
           <div class="service-number">04</div>
           <span class="section-label">Landscape Design</span>
           <h2>Outdoor Spaces That Complete the Picture</h2>
-          <p>Great buildings deserve great surroundings. Our Landscape Design practice creates outdoor environments — from intimate private gardens to large public spaces — that complement the built form and enhance the lives of those who use them.</p>
+          <p>Great buildings deserve great surroundings. Our Landscape Design practice creates outdoor environments (from intimate private gardens to large public spaces) that complement the built form and enhance the lives of those who use them.</p>
           <p>We have designed Landscape schemes for government institutions (GVMC, Police Department), private developers (Swathi Promoters), and healthcare campuses (KIMS Hospitals).</p>
           <ul class="service-includes">
             <li>Residential garden and courtyard design</li>
@@ -220,7 +256,7 @@
           </ul>
         </div>
         <div class="service-detail-image">
-          <img src="images/landscape/celest-landscape-1.jpg" alt="Landscape design — The Celest, Gajuwaka" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+          <img src="images/landscape/celest-landscape-1.jpg" alt="Landscape design, The Celest, Gajuwaka" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
         </div>
       </div>
 
@@ -230,8 +266,8 @@
           <div class="service-number">05</div>
           <span class="section-label">Public Spaces</span>
           <h2>Public Spaces for Community Engagement</h2>
-          <p>We design inclusive and vibrant public spaces that foster community engagement and enhance urban life — from parks and plazas to cultural institutions, sports complexes, and civic facilities designed to serve communities for generations.</p>
-          <p>Our portfolio includes the Indoor Stadium for the Sports Authority of Andhra Pradesh (SAAP), civic facilities for GVMC Visakhapatnam, and the TU-142 Memorial Museum — projects that demonstrate our capacity to deliver at institutional scale within public procurement frameworks.</p>
+          <p>We design inclusive and vibrant public spaces that foster community engagement and enhance urban life, from parks and plazas to cultural institutions, sports complexes, and civic facilities designed to serve communities for generations.</p>
+          <p>Our portfolio includes the Indoor Stadium for the Sports Authority of Andhra Pradesh (SAAP), civic facilities for GVMC Visakhapatnam, and the TU-142 Memorial Museum, projects that demonstrate our capacity to deliver at institutional scale within public procurement frameworks.</p>
           <ul class="service-includes">
             <li>Parks, plazas and open public realm</li>
             <li>Cultural institutions and museums</li>
@@ -242,7 +278,7 @@
           </ul>
         </div>
         <div class="service-detail-image">
-          <img src="images/architectural/indoor-stadium-front.jpg" alt="Indoor Stadium — Atchutapuram, SAAP" loading="lazy" />
+          <img src="images/architectural/indoor-stadium-front.jpg" alt="Indoor Stadium, Atchutapuram, SAAP" loading="lazy" />
         </div>
       </div>
 
@@ -252,8 +288,8 @@
           <div class="service-number">06</div>
           <span class="section-label">Project Management</span>
           <h2>Your Project, Delivered as Designed</h2>
-          <p>Good design is only as good as its execution. We offer comprehensive project management and construction supervision — ensuring the quality, intent, and detail of the design are faithfully realised on site.</p>
-          <p>For clients who require it, we act as the single point of accountability across all disciplines — managing contractors, consultants, and authorities so you don't have to.</p>
+          <p>Good design is only as good as its execution. We offer comprehensive project management and construction supervision, ensuring the quality, intent, and detail of the design are faithfully realised on site.</p>
+          <p>For clients who require it, we act as the single point of accountability across all disciplines, managing contractors, consultants, and authorities so you don't have to.</p>
           <ul class="service-includes">
             <li>Construction documentation and specifications</li>
             <li>Tender management and contractor selection</li>
@@ -284,12 +320,12 @@
         <div class="process-step fade-up">
           <div class="step-number">1</div>
           <h4>Discover</h4>
-          <p>We listen first — understanding your brief, your site, your budget, and your vision before a single line is drawn.</p>
+          <p>We listen first: understanding your brief, your site, your budget, and your vision before a single line is drawn.</p>
         </div>
         <div class="process-step fade-up">
           <div class="step-number">2</div>
           <h4>Concept</h4>
-          <p>We develop design concepts and present them for your feedback — exploring options, testing ideas, and refining direction.</p>
+          <p>We develop design concepts and present them for your feedback, exploring options, testing ideas, and refining direction.</p>
         </div>
         <div class="process-step fade-up">
           <div class="step-number">3</div>
@@ -314,7 +350,7 @@
   <div class="cta-band">
     <div class="container">
       <h2>Ready to Discuss Your Project?</h2>
-      <p>Every project is unique. Let's talk about what you need — free initial consultation, no commitment required.</p>
+      <p>Every project is unique. Let's talk about what you need. Free initial consultation, no commitment required.</p>
       <a href="contact.html" class="btn btn-outline">Book a Free Consultation</a>
     </div>
   </div>

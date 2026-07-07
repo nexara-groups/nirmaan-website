@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sai Nirmaan Architects — Architecture & Design | Visakhapatnam</title>
+  <title>Sai Nirmaan Architects · Architecture & Design | Visakhapatnam</title>
   <meta name="description" content="Architecture, Interior & Landscape practice in Visakhapatnam. Led by Suresh Bandaru with 15+ years across South India and Odisha. 300+ Projects. 4+ States." />
   <meta name="keywords" content="architect Visakhapatnam, architecture firm Vizag, interior design Andhra Pradesh, residential architect, landscape design, Sai Nirmaan Architects" />
   <link rel="canonical" href="https://sainirmaanarchitects.com/" />
   <meta name="google-site-verification" content="dHLBYF3qiamzLsKivjqMimMQv3ck-OMC0MC1IKEHXNE" />
-  <meta property="og:title" content="Sai Nirmaan Architects — Architecture & Design | Hyderabad | Visakhapatnam" />
-  <meta property="og:description" content="Architecture, Interior, Landscape — Visakhapatnam. Led by Suresh Bandaru with 15+ years across South India and Odisha. 300+ Projects. 4+ States." />
+  <meta property="og:title" content="Sai Nirmaan Architects · Architecture & Design | Hyderabad | Visakhapatnam" />
+  <meta property="og:description" content="Architecture, Interior, Landscape · Visakhapatnam. Led by Suresh Bandaru with 15+ years across South India and Odisha. 300+ Projects. 4+ States." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sainirmaanarchitects.com/" />
   <meta property="og:image" content="https://sainirmaanarchitects.com/images/interior/govind-lmn-hero.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Sai Nirmaan Architects — Architecture & Design | Hyderabad | Visakhapatnam" />
+  <meta name="twitter:title" content="Sai Nirmaan Architects · Architecture & Design | Hyderabad | Visakhapatnam" />
   <meta name="twitter:description" content="Full-spectrum Architecture, Interior, Landscape practice in Visakhapatnam. 300+ Projects. 15+ Years. 4+ States." />
   <meta name="twitter:image" content="https://sainirmaanarchitects.com/images/interior/govind-lmn-hero.jpg" />
 
@@ -70,7 +70,7 @@
     "@context":"https://schema.org",
     "@type":"ArchitecturalFirm",
     "name":"Sai Nirmaan Architects",
-    "description":"Architecture, Interior, Landscape — Visakhapatnam",
+    "description":"Architecture, Interior, Landscape · Visakhapatnam",
     "address":{"@type":"PostalAddress","streetAddress":"S-1, 3rd Floor, Srinivasam Apartments, MVP Sector 3","addressLocality":"Visakhapatnam","addressRegion":"Andhra Pradesh","postalCode":"530017","addressCountry":"IN"},
     "telephone":"+91-9704201438",
     "email":"suresh@sainirmaanarchitects.com",
@@ -86,6 +86,25 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
+    // Google Consent Mode v2 — default DENIED until the visitor consents (DPDP Act 2023).
+    // The consent banner in main.js calls gtag('consent','update',...) once the user chooses.
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    try {
+      var _sna = JSON.parse(localStorage.getItem('sna-consent') || 'null');
+      if (_sna && _sna.analytics === true) {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+
     gtag('config', 'G-XS4JHG10ZB');
   </script>
 </head>
@@ -133,7 +152,7 @@
   <div class="hero-content wrap">
     <p class="hero-label">Visakhapatnam · Hyderabad · Vijayawada · Odisha</p>
     <h1>We Build Spaces<br/>That <em>Endure</em></h1>
-    <p class="hero-sub">Architecture, Interior, Landscape — thoughtfully crafted for the people who inhabit them.</p>
+    <p class="hero-sub">Architecture, Interior, Landscape. Thoughtfully crafted for the people who inhabit them.</p>
     <div class="hero-actions">
       <a href="portfolio.html" class="btn btn-ghost btn-arrow">View Portfolio</a>
       <a href="contact.html" class="btn btn-ghost" style="border-color:rgba(255,255,255,0.38); color:rgba(255,255,255,0.9);">Start a Project</a>
@@ -178,7 +197,7 @@
       <h2>Design that serves people first</h2>
     </div>
     <div class="intro-right fade-in">
-      <p>Sai Nirmaan Architects is a full-spectrum design practice led by Principal Architect <strong>Suresh Bandaru</strong>. Over 15 years, we have delivered Architectural Design and Landscape Design projects across Andhra Pradesh, Telangana, and Odisha — from intimate family residences to large-scale institutional commissions. 300+ Projects. 4+ States.</p>
+      <p>Sai Nirmaan Architects is a full-spectrum design practice led by Principal Architect <strong>Suresh Bandaru</strong>. Over 15 years, we have delivered Architectural Design and Landscape Design projects across Andhra Pradesh, Telangana, and Odisha, from intimate family residences to large-scale institutional commissions. 300+ Projects. 4+ States.</p>
       <p>We believe a building's true measure is not how it photographs, but how it performs for the people who use it every day. Every project begins with listening.</p>
       <a href="about.html" class="btn btn-ghost-ink btn-arrow" style="margin-top:2rem;">About the practice</a>
     </div>
@@ -190,7 +209,7 @@
   <div class="wrap">
     <div class="about-block">
       <div class="about-portrait fade-in">
-        <img src="images/team/suresh-bandaru-home.jpg" alt="Suresh Bandaru — Principal Director & Chief Architect, Sai Nirmaan Architects" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; border-radius:4px;" />
+        <img src="images/team/suresh-bandaru-home.jpg" alt="Suresh Bandaru, Principal Director & Chief Architect, Sai Nirmaan Architects" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; border-radius:4px;" />
         <div class="portrait-caption">
           <div class="portrait-caption-name">Suresh Bandaru</div>
           <div class="portrait-caption-role">Principal Director · Chief Architect</div>
@@ -199,7 +218,7 @@
       <div class="about-text fade-in">
         <span class="eyebrow">Principal Architect</span>
         <h2>The person behind every project</h2>
-        <p>Suresh Bandaru has spent 15+ years shaping the built environment across South India and Odisha — from intimate family residences to large-scale civic institutions and disaster-resilient housing built alongside CARE India, Child Fund, and Save the Children.</p>
+        <p>Suresh Bandaru has spent 15+ years shaping the built environment across South India and Odisha, from intimate family residences to large-scale civic institutions and disaster-resilient housing built alongside CARE India, Child Fund, and Save the Children.</p>
         <p>What distinguishes the practice is a singular belief: architecture must serve people first. The measure of a building is the quality of life it enables, not the awards it collects.</p>
         <div class="about-credentials" style="margin-top:2rem;">
           <div class="cred-item">
@@ -235,7 +254,7 @@
         <span class="eyebrow">Services</span>
         <h2>What we do</h2>
       </div>
-      <p style="max-width:520px; align-self:end;">From concept to handover — Architecture, Interior, Landscape delivered as a single integrated service.</p>
+      <p style="max-width:520px; align-self:end;">From concept to handover: Architecture, Interior, Landscape delivered as a single integrated service.</p>
     </div>
 
     <div class="services-list">
@@ -243,7 +262,7 @@
         <div class="service-num">01</div>
         <div class="service-info">
           <h3>Residential Spaces</h3>
-          <p>Villas, apartments and family homes — designed around how you live, not how they look on paper.</p>
+          <p>Villas, apartments and family homes, designed around how you live, not how they look on paper.</p>
         </div>
         <div class="service-arrow">→</div>
       </a>
@@ -259,7 +278,7 @@
         <div class="service-num">03</div>
         <div class="service-info">
           <h3>Interior Design</h3>
-          <p>Residential and commercial interiors — bespoke, material-led, with meticulous attention to light and detail.</p>
+          <p>Residential and commercial interiors: bespoke, material-led, with meticulous attention to light and detail.</p>
         </div>
         <div class="service-arrow">→</div>
       </a>
@@ -267,7 +286,7 @@
         <div class="service-num">04</div>
         <div class="service-info">
           <h3>Landscape Design</h3>
-          <p>Outdoor environments — from private gardens to campus landscapes — that complete the built composition.</p>
+          <p>Outdoor environments (from private gardens to campus landscapes) that complete the built composition.</p>
         </div>
         <div class="service-arrow">→</div>
       </a>
@@ -275,7 +294,7 @@
         <div class="service-num">05</div>
         <div class="service-info">
           <h3>Public Spaces</h3>
-          <p>Cultural institutions, sports complexes and civic spaces — architecture that serves communities and stands the test of time.</p>
+          <p>Cultural institutions, sports complexes and civic spaces: architecture that serves communities and stands the test of time.</p>
         </div>
         <div class="service-arrow">→</div>
       </a>
@@ -283,7 +302,7 @@
         <div class="service-num">06</div>
         <div class="service-info">
           <h3>Project Management</h3>
-          <p>End-to-end site supervision and contractor coordination — your project delivered exactly as designed.</p>
+          <p>End-to-end site supervision and contractor coordination: your project delivered exactly as designed.</p>
         </div>
         <div class="service-arrow">→</div>
       </a>
@@ -314,7 +333,7 @@
     <div class="pgrid fade-in">
       <!-- Wide+tall: Tribal Museum -->
       <div class="pitem wide-tall" data-category="cultural"
-        data-tag="Cultural Architecture" data-title="Tribal Museum — President's Village"
+        data-tag="Cultural Architecture" data-title="Tribal Museum, President's Village"
         data-location="Odisha" data-type="Cultural / Institutional"
         data-area="4,500 sqm" data-year="2023" data-status="Design Proposal 2023"
         data-desc="A landmark cultural project celebrating tribal heritage. Interlocking pavilions guide visitors through an immersive narrative drawn from local materials and traditional motifs."
@@ -322,29 +341,29 @@
         <img src="images/architectural/tribal-museum-1.jpg" alt="Tribal Museum President's Village" loading="lazy" />
         <div class="pitem-info">
           <p class="pitem-tag">Cultural · Architecture</p>
-          <h3>Tribal Museum — President's Village</h3>
+          <h3>Tribal Museum, President's Village</h3>
           <p>Odisha · 2023</p>
         </div>
       </div>
 
       <!-- Tall: Indoor Stadium -->
       <div class="pitem tall" data-category="institutional"
-        data-tag="Institutional Design" data-title="Indoor Stadium — Atchutapuram (SAAP)"
+        data-tag="Institutional Design" data-title="Indoor Stadium, Atchutapuram (SAAP)"
         data-location="Visakhapatnam District, AP" data-type="Sports / Institutional"
         data-area="12,000 sqm" data-year="2023" data-status="Design Complete"
-        data-desc="A large-scale indoor sports facility for the Sports Authority of Andhra Pradesh — prioritising natural ventilation, clear-span structure, and civic presence."
+        data-desc="A large-scale indoor sports facility for the Sports Authority of Andhra Pradesh, prioritising natural ventilation, clear-span structure, and civic presence."
         data-gallery="images/architectural/indoor-stadium-front.jpg|images/architectural/indoor-stadium-side.jpg|images/architectural/indoor-stadium-elevation.jpg">
         <img src="images/architectural/indoor-stadium-front.jpg" alt="Indoor Stadium Atchutapuram" loading="lazy" />
         <div class="pitem-info">
           <p class="pitem-tag">Institutional · Sports</p>
-          <h3>Indoor Stadium — Atchutapuram</h3>
+          <h3>Indoor Stadium, Atchutapuram</h3>
           <p>Visakhapatnam District, AP</p>
         </div>
       </div>
 
       <!-- Regular: The Regent Interior (wide) -->
       <div class="pitem wide" data-category="interior"
-        data-tag="Interior Design" data-title="Pristine-508 — The Regent, Serlingampalli"
+        data-tag="Interior Design" data-title="Pristine-508, The Regent, Serlingampalli"
         data-location="Hyderabad, Telangana" data-type="Residential Spaces"
         data-area="2,000 sqm" data-year="2025" data-status="Completed"
         data-desc="High-end residential interior for The Regent, Serlingampalli. Warm material palettes, bespoke joinery, and seamless spatial flow throughout."
@@ -352,36 +371,36 @@
         <img src="images/interior/the-regent-7.jpg" alt="The Regent interior Hyderabad" loading="lazy" />
         <div class="pitem-info">
           <p class="pitem-tag">Interior · Residential</p>
-          <h3>Pristine-508 — The Regent</h3>
+          <h3>Pristine-508, The Regent</h3>
           <p>Serlingampalli, Hyderabad · 2025</p>
         </div>
       </div>
 
       <!-- Regular: Mr Bhaskar Villa -->
       <div class="pitem" data-category="architectural"
-        data-tag="Residential Architecture" data-title="Villa — Mr. Bhaskar"
+        data-tag="Residential Architecture" data-title="Villa, Mr. Bhaskar"
         data-location="Srikakulam, Andhra Pradesh" data-type="Residential Villa"
         data-area="850 sqm" data-year="2020" data-status="Completed"
-        data-desc="A contemporary coastal villa in Srikakulam — bold horizontal planes, generous overhangs, and a composition that draws from Andhra's vernacular without imitation.">
+        data-desc="A contemporary coastal villa in Srikakulam: bold horizontal planes, generous overhangs, and a composition that draws from Andhra's vernacular without imitation.">
         <img src="images/architectural/mr-bhaskar-srikakulam.jpg" alt="Mr Bhaskar Villa Srikakulam" loading="lazy" />
         <div class="pitem-info">
           <p class="pitem-tag">Architectural · Residential</p>
-          <h3>Villa — Mr. Bhaskar</h3>
+          <h3>Villa, Mr. Bhaskar</h3>
           <p>Srikakulam, Andhra Pradesh</p>
         </div>
       </div>
 
       <!-- Regular: Harish Interior -->
       <div class="pitem" data-category="interior"
-        data-tag="Interior Design" data-title="Residence — Mr. Harish, Rajam"
+        data-tag="Interior Design" data-title="Residence, Mr. Harish, Rajam"
         data-location="Rajam, Andhra Pradesh" data-type="Residential Interior"
         data-area="400 sqm" data-year="2025" data-status="Design Complete"
-        data-desc="Full residential interior in Rajam — warm neutral palette, rich wood tones, and carefully layered lighting across all living zones."
+        data-desc="Full residential interior in Rajam: warm neutral palette, rich wood tones, and carefully layered lighting across all living zones."
         data-gallery="images/interior/harish-rajam-lounge.jpg|images/interior/harish-rajam-hall.jpg|images/interior/harish-rajam-bedroom.jpg">
         <img src="images/interior/harish-rajam-lounge.jpg" alt="Mr Harish Rajam interior" loading="lazy" />
         <div class="pitem-info">
           <p class="pitem-tag">Interior · Residential</p>
-          <h3>Residence — Mr. Harish, Rajam</h3>
+          <h3>Residence, Mr. Harish, Rajam</h3>
           <p>Rajam, Andhra Pradesh · 2025</p>
         </div>
       </div>
@@ -391,7 +410,7 @@
         data-tag="Healthcare Architecture" data-title="GJ Medical Centre"
         data-location="Gajuwaka, Visakhapatnam" data-type="Healthcare / Commercial"
         data-area="3,200 sqm" data-year="2019" data-status="Design Complete"
-        data-desc="A clinical centre in Gajuwaka with clean contemporary lines — maximising natural light while meeting strict functional requirements for a modern healthcare environment.">
+        data-desc="A clinical centre in Gajuwaka with clean contemporary lines, maximising natural light while meeting strict functional requirements for a modern healthcare environment.">
         <img src="images/architectural/gj-medical-elevation.jpg" alt="GJ Medical Centre elevation" loading="lazy" />
         <div class="pitem-info">
           <p class="pitem-tag">Architectural · Healthcare</p>
@@ -414,7 +433,7 @@
   </div>
   <div class="feature-body">
     <span class="eyebrow" style="color:rgba(255,160,60,0.8);">Featured Project</span>
-    <h2>Tribal Museum —<br/>President's Village</h2>
+    <h2>Tribal Museum,<br/>President's Village</h2>
     <p>A cultural landmark that celebrates the heritage and identity of tribal communities through architecture. A series of interlocking pavilions, native landscaping, and material honesty create an experience that is both civic and deeply human.</p>
     <p>Realised through detailed Enscape visualisation, this project marks a significant new direction for the practice in cultural and civic architecture.</p>
     <div class="feature-meta">
@@ -470,8 +489,8 @@
       <div class="csr-text fade-in">
         <span class="eyebrow">Social Impact</span>
         <h2>Architecture that serves<br/>the most vulnerable</h2>
-        <p>One of the practice's defining chapters is its partnership with humanitarian organisations on the Disaster Resilient Inclusive Shelter (DRIS) programme — building climate-resilient, dignified housing for cyclone-affected communities across coastal Andhra Pradesh, Bihar, UP, West Bengal and Odisha.</p>
-        <p>This work reshaped how we think about design. When your client has nothing, every decision matters more — not less.</p>
+        <p>One of the practice's defining chapters is its partnership with humanitarian organisations on the Disaster Resilient Inclusive Shelter (DRIS) programme, building climate-resilient, dignified housing for cyclone-affected communities across coastal Andhra Pradesh, Bihar, UP, West Bengal and Odisha.</p>
+        <p>This work reshaped how we think about design. When your client has nothing, every decision matters more, not less.</p>
         <div class="csr-partners">
           <span class="csr-partner">CARE India</span>
           <span class="csr-partner">Child Fund</span>
@@ -533,7 +552,7 @@
         <div class="bcard-body">
           <p class="bcard-tag">Interior Design</p>
           <h3>Small Spaces, Big Ideas: Maximising Urban Apartments in Hyderabad</h3>
-          <p class="bcard-excerpt">Smart planning, light strategy, and material restraint — how any urban flat can feel generous.</p>
+          <p class="bcard-excerpt">Smart planning, light strategy, and material restraint: how any urban flat can feel generous.</p>
           <div class="bcard-meta">
             <span>Sai Nirmaan Architects</span>
             <span>6 min read</span>

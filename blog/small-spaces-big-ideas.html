@@ -45,6 +45,25 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
+    // Google Consent Mode v2 — default DENIED until the visitor consents (DPDP Act 2023).
+    // The consent banner in main.js calls gtag('consent','update',...) once the user chooses.
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    try {
+      var _sna = JSON.parse(localStorage.getItem('sna-consent') || 'null');
+      if (_sna && _sna.analytics === true) {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+
     gtag('config', 'G-XS4JHG10ZB');
   </script>
   <script type="application/ld+json">
@@ -109,7 +128,7 @@
             <span>6 min read</span>
         </div>
 
-        <p>Walk through any new residential development in Hyderabad—or Bangalore, Chennai, Pune—and you'll notice a troubling trend. The average apartment size is shrinking. What was 1,200 sq ft a decade ago is now 900. What was spacious is now efficient. What was livable is now, frankly, cramped. Developers defend this with rising land costs and market demand. The reality is more complex: we're choosing to build smaller because it maximizes profit, not because smaller homes are what people actually need.</p>
+        <p>Walk through any new residential development in Hyderabad (or Bangalore, Chennai, Pune) and you'll notice a troubling trend. The average apartment size is shrinking. What was 1,200 sq ft a decade ago is now 900. What was spacious is now efficient. What was livable is now, frankly, cramped. Developers defend this with rising land costs and market demand. The reality is more complex: we're choosing to build smaller because it maximizes profit, not because smaller homes are what people actually need.</p>
 
         <p>Yet smaller apartments are here to stay. The question for architects and designers is not how to reverse this trend but how to make genuinely livable homes at smaller scales. This is not about clever tricks or visual illusions. It's about fundamental planning discipline, material intelligence, and lighting design that transforms constraint into character.</p>
 
@@ -117,9 +136,9 @@
 
         <p>The most common mistake in small apartment design is prioritizing aesthetics before solving spatial problems. A developer or designer chooses finishes, furniture, colors, and textures without first asking: How does this space actually work? How do people move through it? Where do they store their belongings? What is wasted space that could serve a function?</p>
 
-        <p>Effective small space design begins with ruthless spatial planning. Open-plan living is not a style choice; it's a functional necessity. Separating the living room, dining room, and kitchen with walls turns a 600 sq ft apartment into a series of cramped cells. A single, flowing space feels three times larger than the same square footage divided into rooms. The key is creating distinct zones without physical barriers—different flooring, subtle level changes, furniture arrangement, lighting zones.</p>
+        <p>Effective small space design begins with ruthless spatial planning. Open-plan living is not a style choice; it's a functional necessity. Separating the living room, dining room, and kitchen with walls turns a 600 sq ft apartment into a series of cramped cells. A single, flowing space feels three times larger than the same square footage divided into rooms. The key is creating distinct zones without physical barriers: different flooring, subtle level changes, furniture arrangement, lighting zones.</p>
 
-        <p>Flow between spaces matters more in small apartments than in large ones. Every corridor is wasted space unless it serves multiple functions. We design circulation paths that connect one zone to another while offering visual interest—perhaps a shift in ceiling height, a change in materiality, a borrowed light from an adjacent room. The entry becomes a transition space rather than dead area. Movement through the apartment becomes part of the spatial experience.</p>
+        <p>Flow between spaces matters more in small apartments than in large ones. Every corridor is wasted space unless it serves multiple functions. We design circulation paths that connect one zone to another while offering visual interest, perhaps a shift in ceiling height, a change in materiality, a borrowed light from an adjacent room. The entry becomes a transition space rather than dead area. Movement through the apartment becomes part of the spatial experience.</p>
 
         <p>Kitchen design in small apartments deserves particular attention. A poorly planned kitchen in a small flat can consume half the apartment's usable area. We work with modular systems that maximize storage without overwhelming the space. A single-wall galley kitchen with carefully planned under-counter and wall storage can serve a family adequately if the rest of the apartment doesn't duplicate storage functions.</p>
 
@@ -127,33 +146,33 @@
 
         <p>If you had to choose one factor that makes a small space feel large, it would not be mirrors or light colors or clever furniture. It would be natural light. A poorly lit 900 sq ft apartment feels claustrophobic regardless of how it's designed. A well-lit 600 sq ft space can feel generous. This is not psychology; it's neurochemistry. Light activates the brain, reduces stress, and changes our perception of volume.</p>
 
-        <p>Every design decision must prioritize natural light. Window placement is critical. Windows on two opposite or perpendicular walls allow light to penetrate deep into the space. A single window wall casts the majority of the apartment into relative shadow. Where possible, we argue for windows on two sides—east and north for morning light without afternoon heat; west and north for full-day illumination with thermal management on the hot side.</p>
+        <p>Every design decision must prioritize natural light. Window placement is critical. Windows on two opposite or perpendicular walls allow light to penetrate deep into the space. A single window wall casts the majority of the apartment into relative shadow. Where possible, we argue for windows on two sides, east and north for morning light without afternoon heat; west and north for full-day illumination with thermal management on the hot side.</p>
 
-        <p>The use of mirrors is real but secondary. A mirror opposite a window doubles the light perception and creates a sense of depth. But mirrors are not a substitute for thoughtful fenestration and light-colored surfaces. Painting a small apartment in dark tones—navy walls, dark feature walls, dark furniture—is architectural self-sabotage. Warm neutrals, soft grays, and pale tones reflect light and expand perceived volume. A single accent color used sparingly (perhaps one wall in the bedroom) adds character without reducing light.</p>
+        <p>The use of mirrors is real but secondary. A mirror opposite a window doubles the light perception and creates a sense of depth. But mirrors are not a substitute for thoughtful fenestration and light-colored surfaces. Painting a small apartment in dark tones (navy walls, dark feature walls, dark furniture) is architectural self-sabotage. Warm neutrals, soft grays, and pale tones reflect light and expand perceived volume. A single accent color used sparingly (perhaps one wall in the bedroom) adds character without reducing light.</p>
 
         <img src="../images/interior/harish-rajam-lounge.jpg" alt="Small apartment living space with open plan, natural light, and neutral material palette" />
 
         <h2>Storage as Architecture</h2>
 
-        <p>The defining difference between a well-designed small space and a chaotic one is storage. Not decorative storage, but built-in, integrated storage that becomes part of the architecture. Freestanding furniture—dressers, bookshelves, cabinets—consumes floor space and fragments the room visually. Built-in joinery becomes walls, becomes structure, becomes part of the spatial definition.</p>
+        <p>The defining difference between a well-designed small space and a chaotic one is storage. Not decorative storage, but built-in, integrated storage that becomes part of the architecture. Freestanding furniture (dressers, bookshelves, cabinets) consumes floor space and fragments the room visually. Built-in joinery becomes walls, becomes structure, becomes part of the spatial definition.</p>
 
         <p>A wall-to-wall wardrobe from floor to ceiling in the bedroom consumes minimal floor area but provides storage for a family's entire wardrobe. Under-bed storage becomes functional when drawers slide smoothly on quality runners. Kitchen walls become storage. Even the area above doorways, often wasted, can be integrated into overhead cabinets that follow the entire perimeter of a small kitchen or living space.</p>
 
-        <p>This level of storage design requires custom specification and quality execution. Off-the-shelf systems rarely fit small spaces optimally. A wardrobe cabinet designed to fit the exact dimensions of the bedroom wall—using every inch, matching ceiling height—costs less than a poorly-proportioned, oversized system from a furniture showroom and serves the space infinitely better.</p>
+        <p>This level of storage design requires custom specification and quality execution. Off-the-shelf systems rarely fit small spaces optimally. A wardrobe cabinet designed to fit the exact dimensions of the bedroom wall (using every inch, matching ceiling height) costs less than a poorly-proportioned, oversized system from a furniture showroom and serves the space infinitely better.</p>
 
         <h2>Material and Colour Strategy</h2>
 
-        <p>Material selection in a small apartment should follow a principle of visual continuity. If you change flooring between the living area and kitchen, the bedroom and corridor, the bathroom and everything else, you fragment the space visually and reduce the sense of flow. A consistent material throughout—perhaps light-colored tile or wood-look porcelain—creates visual continuity that makes the apartment feel unified and larger.</p>
+        <p>Material selection in a small apartment should follow a principle of visual continuity. If you change flooring between the living area and kitchen, the bedroom and corridor, the bathroom and everything else, you fragment the space visually and reduce the sense of flow. A consistent material throughout (perhaps light-colored tile or wood-look porcelain) creates visual continuity that makes the apartment feel unified and larger.</p>
 
-        <p>Wall color should be equally disciplined. We typically specify warm neutrals throughout: soft grays, barely-off-white, pale beige. These are not boring; a high-quality neutral paint has depth and character. They reflect light, create visual continuity, and serve as a backdrop for furniture and decor. A single accent color—used in the bedroom, a hallway, or a feature wall—adds personality without fragmenting the visual space.</p>
+        <p>Wall color should be equally disciplined. We typically specify warm neutrals throughout: soft grays, barely-off-white, pale beige. These are not boring; a high-quality neutral paint has depth and character. They reflect light, create visual continuity, and serve as a backdrop for furniture and decor. A single accent color, used in the bedroom, a hallway, or a feature wall, adds personality without fragmenting the visual space.</p>
 
-        <p>Texture becomes more important when the color palette is restrained. A linen upholstery, a rough-hewn wooden element, a woven accent, concrete details—these add tactile and visual interest without introducing additional colors. The discipline of a limited palette paradoxically creates more interesting, more sophisticated interiors than apartments with many colors that compete visually for attention.</p>
+        <p>Texture becomes more important when the color palette is restrained. A linen upholstery, a rough-hewn wooden element, a woven accent, concrete details: these add tactile and visual interest without introducing additional colors. The discipline of a limited palette paradoxically creates more interesting, more sophisticated interiors than apartments with many colors that compete visually for attention.</p>
 
         <h2>Lighting Layers</h2>
 
-        <p>Here is where most small apartments fail catastrophically: lighting design. A single overhead light—typically recessed ceiling lights or a basic pendant—is insufficient for any space. In small apartments, poor lighting doesn't just look bad; it makes the space feel smaller, more institutional, more depressing. Good lighting requires layers.</p>
+        <p>Here is where most small apartments fail catastrophically: lighting design. A single overhead light (typically recessed ceiling lights or a basic pendant) is insufficient for any space. In small apartments, poor lighting doesn't just look bad; it makes the space feel smaller, more institutional, more depressing. Good lighting requires layers.</p>
 
-        <p>Ambient lighting provides overall illumination—recessed lights or flush ceiling lights that create a base level of brightness without shadows. Task lighting serves specific functions: a bedside reading light, focused light over a kitchen counter, a desk lamp in the work area. Accent lighting highlights architecture, artwork, or materials—LED strips behind a wardrobe, uplighting on a textured wall, candlelight in the living area.</p>
+        <p>Ambient lighting provides overall illumination: recessed lights or flush ceiling lights that create a base level of brightness without shadows. Task lighting serves specific functions: a bedside reading light, focused light over a kitchen counter, a desk lamp in the work area. Accent lighting highlights architecture, artwork, or materials: LED strips behind a wardrobe, uplighting on a textured wall, candlelight in the living area.</p>
 
         <p>The color temperature of lighting matters equally. Warm light (2700K) creates intimacy and comfort; cool light (4000K+) feels clinical and institutional. In small apartments, we consistently specify warm lighting that makes spaces feel inviting rather than sterile. Dimmable lighting on most circuits allows residents to adjust ambiance based on time of day and mood.</p>
 
@@ -161,7 +180,7 @@
 
         <p>A recent residential interior project in Serlingampalli, Hyderabad, exemplifies these principles. A 850 sq ft two-bedroom apartment could have felt cramped with standard design. Instead, we eliminated the wall between the living and kitchen areas, created a continuous run of built-in storage along one wall, specified light natural finishes throughout, designed layered lighting in every zone, and used furniture and spatial design to define distinct living zones within the open volume. The result: an apartment that feels substantially larger than its actual footprint, comfortable for a young family, and economically efficient to build.</p>
 
-        <blockquote>"Small space design is not about making a small apartment feel like a large apartment. It's about designing a genuinely livable apartment at a smaller scale—one where every square foot serves a purpose, and the constraints become source of clarity rather than frustration."</blockquote>
+        <blockquote>"Small space design is not about making a small apartment feel like a large apartment. It's about designing a genuinely livable apartment at a smaller scale, one where every square foot serves a purpose, and the constraints become source of clarity rather than frustration."</blockquote>
 
         <h2>The Generosity of Good Design</h2>
 

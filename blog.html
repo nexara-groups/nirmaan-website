@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Insights — Sai Nirmaan Architects | Architecture & Design Blog</title>
+  <title>Insights · Sai Nirmaan Architects | Architecture & Design Blog</title>
   <meta name="description" content="Architecture insights, design thinking, and industry perspectives from the team at Sai Nirmaan Architects, Visakhapatnam." />
   <link rel="canonical" href="https://sainirmaanarchitects.com/blog.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Sai Nirmaan Architects" />
   <meta property="og:url" content="https://sainirmaanarchitects.com/blog.html" />
-  <meta property="og:title" content="Insights — Sai Nirmaan Architects | Architecture & Design Blog" />
+  <meta property="og:title" content="Insights · Sai Nirmaan Architects | Architecture & Design Blog" />
   <meta property="og:description" content="Architecture insights, design thinking, and industry perspectives from the team at Sai Nirmaan Architects, Visakhapatnam." />
   <meta property="og:image" content="https://sainirmaanarchitects.com/images/interior/the-regent-main.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Insights — Sai Nirmaan Architects Blog" />
+  <meta name="twitter:title" content="Insights · Sai Nirmaan Architects Blog" />
   <meta name="twitter:description" content="Architecture insights, design thinking, and industry perspectives from Visakhapatnam's leading architecture practice." />
   <meta name="twitter:image" content="https://sainirmaanarchitects.com/images/interior/the-regent-main.jpg" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -63,6 +63,25 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
+    // Google Consent Mode v2 — default DENIED until the visitor consents (DPDP Act 2023).
+    // The consent banner in main.js calls gtag('consent','update',...) once the user chooses.
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    try {
+      var _sna = JSON.parse(localStorage.getItem('sna-consent') || 'null');
+      if (_sna && _sna.analytics === true) {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+
     gtag('config', 'G-XS4JHG10ZB');
   </script>
 </head>
@@ -111,7 +130,7 @@
         <div class="blog-hero-content">
           <p class="blog-tag">Featured · Thought Leadership</p>
           <h2>Building for the Margins: Architecture as a Tool for Social Change</h2>
-          <p>Our work with CARE India, Child Fund, Save the Children, and ADRA on disaster-relief housing taught us that the most important client is often the community — and that constraints, far from limiting design, can reveal its truest purpose.</p>
+          <p>Our work with CARE India, Child Fund, Save the Children, and ADRA on disaster-relief housing taught us that the most important client is often the community, and that constraints, far from limiting design, can reveal its truest purpose.</p>
           <div class="blog-meta">
             <span>Suresh Bandaru</span><span>·</span><span>April 2026</span><span>·</span><span>7 min read</span>
           </div>
@@ -128,7 +147,7 @@
           <div class="blog-body">
             <p class="blog-tag">Architecture · Residential</p>
             <h3>Designing for Coastal Andhra: Climate, Context &amp; Character</h3>
-            <p>Passive design, material durability, and cultural sensitivity — how we approach residential design along Andhra Pradesh's coastline.</p>
+            <p>Passive design, material durability, and cultural sensitivity: how we approach residential design along Andhra Pradesh's coastline.</p>
             <div class="blog-meta">
               <span>Suresh Bandaru</span><span>·</span><span>5 min read</span>
             </div>
@@ -157,7 +176,7 @@
   <div class="wrap">
     <div class="fade-in">
       <h2>Ready to discuss your project?</h2>
-      <p>Free initial consultation — we respond within 24 hours.</p>
+      <p>Free initial consultation. We respond within 24 hours.</p>
     </div>
     <div class="cta-actions fade-in">
       <a href="contact.html" class="btn btn-ghost btn-arrow">Get in Touch</a>
