@@ -503,6 +503,18 @@ document.addEventListener('DOMContentLoaded', () => {
     prefsBtn.textContent = 'Cookie Preferences';
     prefsBtn.addEventListener('click', () => window.openCookiePreferences && window.openCookiePreferences());
     legal.appendChild(prefsBtn);
+
+    // Build credit (right-aligned)
+    const credit = document.createElement('span');
+    credit.className = 'footer-credit';
+    const cLink = document.createElement('a');
+    cLink.href = 'https://nexaragroups.com';
+    cLink.target = '_blank';
+    cLink.rel = 'noopener';
+    cLink.textContent = 'Nexara Private Limited';
+    credit.append('Designed & built by ', cLink);
+    legal.appendChild(credit);
+
     fb.appendChild(legal);
   })();
 
