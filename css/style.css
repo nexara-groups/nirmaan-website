@@ -851,12 +851,15 @@ a.service-row { display: grid; }
 
 .footer-bottom {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 0;
+  gap: 0.5rem 2rem;
+  padding: 2rem 0 2.5rem;
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.32);
 }
+.footer-bottom > p { margin: 0; }
 
 /* ---------- BACK TO TOP ---------- */
 .btt {
@@ -1889,6 +1892,15 @@ button:focus-visible,
   transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.25s ease, visibility 0.25s;
 }
 .wa-float.show { opacity: 1; visibility: visible; transform: translateY(0); }
+/* When the footer is in view, tuck the floating buttons away so they never
+   cover the footer content (legal links, build credit). */
+body.footer-visible .wa-float,
+body.footer-visible .btt {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px);
+}
 .wa-float svg { width: 30px; height: 30px; }
 .wa-float:hover { transform: scale(1.08); box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28); }
 .wa-float:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
@@ -2137,39 +2149,46 @@ h1, h2, h3, .article-body p, .article-body li,
 .cc-switch input:focus-visible + .cc-slider { outline: 2px solid var(--ink); outline-offset: 2px; }
 
 /* -- Footer legal links row -- */
+/* Legal + credit row sits on its own line, above the copyright/location line,
+   separated by a hairline for clear, uncramped hierarchy. */
 .footer-legal {
+  order: -1;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
   align-items: center;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  gap: 0.75rem 1.75rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .footer-legal a, .footer-legal-btn {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
   font-family: var(--sans);
+  letter-spacing: 0.01em;
   transition: color var(--dur-fast) var(--ease);
 }
 .footer-legal a:hover, .footer-legal-btn:hover { color: var(--orange); }
 .footer-credit {
   margin-left: auto;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.38);
 }
 .footer-credit a {
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.62);
+  font-weight: 500;
   transition: color var(--dur-fast) var(--ease);
 }
 .footer-credit a:hover { color: var(--orange); }
-@media (max-width: 600px) {
-  .footer-credit { margin-left: 0; width: 100%; }
+@media (max-width: 640px) {
+  .footer-legal { gap: 0.6rem 1.25rem; }
+  .footer-credit { margin-left: 0; width: 100%; padding-top: 0.25rem; }
+  .footer-bottom { gap: 0.35rem 1.5rem; }
 }
 
 @media (max-width: 768px) {

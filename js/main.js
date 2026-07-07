@@ -373,6 +373,16 @@ document.addEventListener('DOMContentLoaded', () => {
     waScroll();
   })();
 
+  /* ----- Hide floating buttons over the footer so they never cover its content ----- */
+  (() => {
+    const footer = document.querySelector('.footer');
+    if (!footer || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(entries => {
+      document.body.classList.toggle('footer-visible', entries[0].isIntersecting);
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+    io.observe(footer);
+  })();
+
   /* ----- Cookie consent (DPDP Act 2023) + Google Consent Mode wiring ----- */
   (() => {
     const STORE_KEY = 'sna-consent';
@@ -485,38 +495,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!read()) banner.classList.add('show');
   })();
 
-  /* ----- Footer legal links (single source across all pages) ----- */
-  (() => {
-    const fb = document.querySelector('.footer-bottom');
-    if (!fb || fb.querySelector('.footer-legal')) return;
-    const legal = document.createElement('div');
-    legal.className = 'footer-legal';
-    [['Privacy Policy', '/privacy-policy.html'], ['Cookie Policy', '/cookie-policy.html'], ['Terms of Use', '/terms-of-use.html']]
-      .forEach(([label, href]) => {
-        const a = document.createElement('a');
-        a.href = href; a.textContent = label;
-        legal.appendChild(a);
-      });
-    const prefsBtn = document.createElement('button');
-    prefsBtn.type = 'button';
-    prefsBtn.className = 'footer-legal-btn';
-    prefsBtn.textContent = 'Cookie Preferences';
-    prefsBtn.addEventListener('click', () => window.openCookiePreferences && window.openCookiePreferences());
-    legal.appendChild(prefsBtn);
-
-    // Build credit (right-aligned)
-    const credit = document.createElement('span');
-    credit.className = 'footer-credit';
-    const cLink = document.createElement('a');
-    cLink.href = 'https://nexaragroups.com';
-    cLink.target = '_blank';
-    cLink.rel = 'noopener';
-    cLink.textContent = 'Nexara Private Limited';
-    credit.append('Designed & built by ', cLink);
-    legal.appendChild(credit);
-
-    fb.appendChild(legal);
-  })();
+  /* Footer legal links + build credit are now hardcoded in each page's HTML
+     (real anchors — better for SEO and no-JS). The Cookie Preferences button
+     uses an inline onclick that calls window.openCookiePreferences (defined above). */
 
   /* Page transitions are handled natively via the CSS View Transitions API
      (@view-transition), so no JS link interception is needed — this avoids
