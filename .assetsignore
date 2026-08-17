@@ -3,6 +3,7 @@
 .git
 .github
 .claude
+.wrangler
 docs
 CLAUDE.md
 update-summary.txt
