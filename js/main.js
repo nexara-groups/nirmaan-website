@@ -33,10 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // Lock body scroll when mobile menu is open
     document.body.style.overflow = open ? 'hidden' : '';
+    nav?.classList.toggle('menu-open', open);
   });
   navLinks?.querySelectorAll('a').forEach(a =>
     a.addEventListener('click', () => {
       navLinks.classList.remove('open');
+      nav?.classList.remove('menu-open');
       document.body.style.overflow = '';
       burger?.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
     })
@@ -52,16 +54,22 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ----- Fade-in / fade-up on scroll (both class names) ----- */
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+  const fadeEls = document.querySelectorAll('.fade-in, .fade-up');
 
-  document.querySelectorAll('.fade-in, .fade-up').forEach(el => io.observe(el));
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+
+    fadeEls.forEach(el => io.observe(el));
+  } else {
+    fadeEls.forEach(el => el.classList.add('visible'));
+  }
 
   /* ----- Animated stat counters ----- */
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -97,34 +105,67 @@ document.addEventListener('DOMContentLoaded', () => {
     countEls.forEach(el => countIO.observe(el));
   }
 
-  /* ----- Portfolio filter ----- */
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const f = btn.dataset.filter;
-      document.querySelectorAll('.pitem[data-category]').forEach(item => {
-        const show = f === 'all' || f === '*' || item.dataset.category === f;
-        if (show) {
-          item.style.display = '';
-          requestAnimationFrame(() => requestAnimationFrame(() => {
-            item.style.transition = 'opacity 0.3s, transform 0.3s';
-            item.style.opacity = '1';
-            item.style.transform = '';
-            item.style.pointerEvents = '';
-          }));
-        } else {
+  /* ----- Portfolio filter (deep-linkable via #category) ----- */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const isAll = f => f === 'all' || f === '*';
+
+  function applyFilter(f) {
+    filterBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+    document.querySelectorAll('.pitem[data-category]').forEach(item => {
+      const show = isAll(f) || item.dataset.category === f;
+      if (show) {
+        item.style.display = '';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
           item.style.transition = 'opacity 0.3s, transform 0.3s';
-          item.style.opacity = '0';
-          item.style.transform = 'scale(0.96)';
-          item.style.pointerEvents = 'none';
-          setTimeout(() => {
-            if (item.style.opacity === '0') item.style.display = 'none';
-          }, 310);
-        }
-      });
+          item.style.opacity = '1';
+          item.style.transform = '';
+          item.style.pointerEvents = '';
+        }));
+      } else {
+        item.style.transition = 'opacity 0.3s, transform 0.3s';
+        item.style.opacity = '0';
+        item.style.transform = 'scale(0.96)';
+        item.style.pointerEvents = 'none';
+        setTimeout(() => {
+          if (item.style.opacity === '0') item.style.display = 'none';
+        }, 310);
+      }
+    });
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      applyFilter(f);
+      history.pushState(null, '', isAll(f) ? location.pathname : '#' + f);
     });
   });
+
+  if (filterBtns.length) {
+    const knows = f => [...filterBtns].some(b => b.dataset.filter === f);
+    const fromHash = () => {
+      const f = decodeURIComponent(location.hash.slice(1));
+      applyFilter(knows(f) ? f : '*');
+      document.querySelector('.filter-btn.active')
+        ?.scrollIntoView({ inline: 'center', block: 'nearest' });
+    };
+    if (location.hash) fromHash();
+    window.addEventListener('popstate', fromHash);
+  }
+
+  /* ----- Filter bar: show that it scrolls sideways ----- */
+  const filterBar = document.querySelector('.portfolio-filters');
+  if (filterBar) {
+    const syncEdges = () => {
+      const max = filterBar.scrollWidth - filterBar.clientWidth;
+      filterBar.classList.toggle('has-overflow', max > 1);
+      filterBar.classList.toggle('at-start', filterBar.scrollLeft <= 1);
+      filterBar.classList.toggle('at-end', filterBar.scrollLeft >= max - 1);
+    };
+    syncEdges();
+    filterBar.addEventListener('scroll', syncEdges, { passive: true });
+    window.addEventListener('resize', syncEdges);
+  }
 
   /* ----- Gallery modal ----- */
   const modalWrap    = document.getElementById('modal');
@@ -241,8 +282,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (form) {
     const validators = {
       name:    v => v.trim().length >= 2      || 'Please enter your name (at least 2 characters).',
-      phone:   v => !v.trim() || /^[\d\s\+\-\(\)]{7,15}$/.test(v.trim()) || 'Enter a valid phone number.',
-      email:   v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) || 'Enter a valid email address.',
+      phone:   v => /^[\d\s\+\-\(\)]{7,15}$/.test(v.trim()) || 'Enter a valid phone number.',
+      email:   v => !v.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) || 'Enter a valid email address.',
       message: v => v.trim().length >= 10    || 'Message must be at least 10 characters.',
     };
 

@@ -146,3 +146,4 @@ CARE India, Child Fund, Save the Children, and ADRA
 ## Workflow
 - No git commits until user audits locally in browser
 - No deployment until user approves after local audit
+- **Bump the asset version after editing `css/style.css` or `js/main.js`** — every page links them as `?v=YYYY-MM-DD`. Set it to the current date across all pages (`*.html`, `blog/*.html`, `projects/*.html`) or returning visitors keep the cached copy. Editing twice in one day needs a suffix (`?v=2026-10-24-2`), otherwise the URL does not change and nothing refetches. `coming-soon.html` is self-contained and has neither link.

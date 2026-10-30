@@ -409,9 +409,25 @@ a.service-row { display: grid; }
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  scroll-snap-type: x proximity;
 }
 .portfolio-filters::-webkit-scrollbar { display: none; }
+
+/* Edge fade shows there is more to scroll (JS toggles the state classes) */
+.portfolio-filters.has-overflow:not(.at-start):not(.at-end) {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+.portfolio-filters.has-overflow.at-start:not(.at-end) {
+  -webkit-mask-image: linear-gradient(to right, #000 88%, transparent 100%);
+          mask-image: linear-gradient(to right, #000 88%, transparent 100%);
+}
+.portfolio-filters.has-overflow.at-end:not(.at-start) {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12%);
+          mask-image: linear-gradient(to right, transparent 0, #000 12%);
+}
 .filter-btn {
+  scroll-snap-align: start;
   padding: 0.85rem 1.75rem;
   font-size: 0.72rem;
   font-weight: 600;
@@ -781,7 +797,7 @@ a.service-row { display: grid; }
   border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 .footer-brand img {
-  height: 38px; margin-bottom: 1.5rem;
+  height: 38px; width: auto; margin-bottom: 1.5rem;
   filter: brightness(0) invert(0.55);
 }
 .footer-brand p {
@@ -864,6 +880,10 @@ a.service-row { display: grid; }
   transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
 }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* Fallback: never leave content hidden when JS is off or the observer fails */
+.no-js .fade-in,
+.no-js .fade-up { opacity: 1; transform: none; }
 
 /* ---------- GALLERY MODAL ---------- */
 .modal-wrap {
@@ -1059,20 +1079,6 @@ a.service-row { display: grid; }
   height: 68px;
 }
 
-
-/* pitem with background-image (fallback for bg-image style items) */
-.pitem[style*="background-image"] {
-  background-size: cover;
-  background-position: center;
-}
-.pitem[style*="background-image"]::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(20,20,20,0.3);
-  transition: background 0.4s var(--ease);
-}
-.pitem[style*="background-image"]:hover::before { background: rgba(20,20,20,0.55); }
 
 /* page-hero with inline background-image */
 .page-hero[style*="background-image"] {
@@ -1271,6 +1277,7 @@ div > .filter-btn { font-family: var(--sans); }
 .contact-icon svg { stroke: var(--orange); }
 .contact-item h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.35rem; font-family: var(--sans); }
 .contact-item p { font-size: 0.88rem; line-height: 1.65; }
+.contact-item p a { color: var(--orange); }
 @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; gap: 3rem; } }
 
 /* Form styles */
@@ -1700,6 +1707,7 @@ html, body {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  .fade-in, .fade-up { opacity: 1; transform: none; }
 }
 
 /* ============================================================
@@ -1941,15 +1949,6 @@ h1, h2, h3, .article-body p, .article-body li,
   transition: transform 0.7s var(--ease), opacity 0.4s var(--ease), filter 0.5s var(--ease);
 }
 .pitem:hover img { filter: grayscale(0) contrast(1); }
-.pitem[style*="background-image"]::before {
-  -webkit-backdrop-filter: grayscale(0.45) contrast(1.03);
-  backdrop-filter: grayscale(0.45) contrast(1.03);
-  transition: background 0.4s var(--ease), -webkit-backdrop-filter 0.5s var(--ease), backdrop-filter 0.5s var(--ease);
-}
-.pitem[style*="background-image"]:hover::before {
-  -webkit-backdrop-filter: grayscale(0);
-  backdrop-filter: grayscale(0);
-}
 
 /* -- 4. Stat counters animate from zero (JS toggles .counting) -- */
 .count-target { font-variant-numeric: tabular-nums; }
@@ -2235,3 +2234,218 @@ h1, h2, h3, .article-body p, .article-body li,
 .legal-toc strong { display: block; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.75rem; }
 .legal-toc ol { padding-left: 1.2rem; margin: 0; }
 .legal-toc li { font-size: 0.88rem; margin-bottom: 0.35rem; }
+
+/* ============================================================
+   PROJECT DETAIL PAGES
+   ============================================================ */
+.project-intro {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+.project-intro p {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+.project-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem 2rem;
+  margin: 0;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--rule);
+}
+.project-specs dt {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-muted);
+  margin-bottom: 0.35rem;
+}
+.project-specs dd {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
+  margin-top: 1.5rem;
+}
+.project-gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius);
+}
+.project-back {
+  display: inline-block;
+  margin: 3rem 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.project-back:hover { color: var(--orange); }
+
+@media (max-width: 860px) {
+  .project-intro { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .project-gallery { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   FAQ ACCORDION + LOCATION PAGES
+   ============================================================ */
+.faq-list { display: flex; flex-direction: column; margin-top: 1rem; }
+.faq-item { border-bottom: 1px solid var(--rule); }
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 1.25rem 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.faq-icon {
+  flex-shrink: 0;
+  color: var(--orange);
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: transform 0.3s var(--ease);
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-question svg { flex-shrink: 0; stroke: var(--orange); transition: transform 0.3s var(--ease); }
+.faq-item.open .faq-question svg { transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s var(--ease), padding 0.35s var(--ease);
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.faq-answer a { color: var(--orange); }
+
+.loc-intro p {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  max-width: 68ch;
+  margin-bottom: 1.25rem;
+}
+.loc-intro a { color: var(--orange); }
+.loc-h2 { margin: 0.75rem 0 2rem; }
+.loc-services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem 2.5rem;
+  margin: 1.5rem 0 0;
+}
+.loc-services dt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+.loc-services dd { margin: 0; color: var(--ink-soft); font-size: 0.9rem; line-height: 1.7; }
+.loc-grid { margin-bottom: 2rem; }
+.loc-addr { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.8; max-width: 52ch; }
+.loc-addr a { color: var(--orange); }
+
+@media (max-width: 900px) { .loc-services { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .loc-services { grid-template-columns: 1fr; } }
+
+.page-hero .hero-sub a { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
+.page-hero .hero-sub a:hover { color: var(--orange); }
+
+/* ============================================================
+   BLOG ARTICLE BODY
+   (was duplicated inline in every article; tokenised and shared)
+   ============================================================ */
+.blog-article { max-width: 740px; margin: 0 auto; padding: 4rem 2rem; }
+.blog-article h2 {
+  font-size: clamp(1.3rem, 2.2vw, 1.55rem);
+  margin: 2.75rem 0 1rem;
+  color: var(--ink);
+}
+.blog-article p {
+  margin-bottom: 1.25rem;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+.blog-article a { color: var(--orange); }
+.blog-article blockquote {
+  border-left: 3px solid var(--orange);
+  padding: 1.25rem 1.5rem;
+  margin: 2.5rem 0;
+  background: var(--stone);
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.blog-article img { width: 100%; border-radius: var(--radius); margin: 2rem 0; }
+.blog-article .article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2.5rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.article-cta {
+  background: var(--stone);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  text-align: center;
+  margin-top: 3rem;
+}
+.article-cta h3 { margin-bottom: 0.75rem; }
+.article-cta p { margin-bottom: 1.5rem; }
+
+@media (max-width: 600px) {
+  .blog-article { padding: 2.5rem 1rem; }
+  .article-cta { padding: 1.75rem; }
+}
+
+/* ============================================================
+   MOBILE MENU WHILE SCROLLED
+   .nav.solid uses backdrop-filter, which makes .nav the containing
+   block for position:fixed children. The full-screen menu then shrank
+   to the height of the bar, and .nav.solid's dark link colour won over
+   the menu's white. JS adds .menu-open to .nav while the menu is open.
+   ============================================================ */
+@media (max-width: 768px) {
+  .nav.menu-open {
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+  .nav.menu-open .nav-links a { color: var(--white); }
+  .nav.menu-open .hamburger span { background: var(--white); }
+}
