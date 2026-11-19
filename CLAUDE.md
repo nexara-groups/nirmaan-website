@@ -123,7 +123,7 @@ Blog articles use `../favicon-32.png` etc.
 S-1, 3rd Floor, Srinivasam Apartments, MVP Sector 3, Visakhapatnam — 530017
 
 **Hyderabad:**
-6-81/1, Patemeti Chandraih Nilayan, Tellapur HUDA Colony, Near Alien Space Station, Hyderabad, Telangana — 502032
+203, Nirvana Apartments, Back side of Pavani Estates, Metro Pillar no. 1187, Khairtabad, Hyderabad, Telangana — 500004
 
 ### CSR / NGO Partners (correct — do not change)
 CARE India, Child Fund, Save the Children, and ADRA
