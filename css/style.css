@@ -1489,7 +1489,7 @@ select.form-control:focus { border-color: var(--orange); outline: none; }
 .client-marquee-track {
   display: flex; align-items: center; width: max-content;
   list-style: none; margin: 0; padding: 0;
-  animation: client-marquee 28s linear infinite;
+  animation: client-marquee 40s linear infinite;
 }
 .client-marquee:hover .client-marquee-track,
 .client-marquee:focus-within .client-marquee-track { animation-play-state: paused; }
